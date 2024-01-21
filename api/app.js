@@ -1,12 +1,19 @@
-const express = require('express')
-const App = express();
+const express = require('express');
+const app = express();
+const PORT = 3000;
 
 
-App.get('/', (req, res)=>{
-    console.log('User connected')
-})
+//Routings
+const webRouter = require('./webApp/index')
+const sensorRouter = require('./sensors/index')
+app.use(webRouter);
+app.use(sensorRouter);
 
 
-App.listen(8080, '0.0.0.0', ()=>{
-    console.log("Server Started at port 8080")
-})
+
+//Create Server
+app.listen(PORT, function (err) {
+    if(err) 
+        console.log(err);
+    console.log("Server listening on PORT", PORT);
+});
