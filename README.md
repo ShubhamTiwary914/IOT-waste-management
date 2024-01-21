@@ -6,6 +6,7 @@
 <h4> - Use Cases & Application Overview </h4>
 <h4> - Files Structure 📂 </h4>
 <h4> - Setup Guide 🧰 </h4>
+<h4> - How to run 🧪 </h4>
 <br><br><br>
 <hr>
 
@@ -55,5 +56,31 @@
   npm install 
 ```
 
+<br><br>
+
+
+
+<hr>
+<h3> How to run 🧪 </h3>
+
+> To run the web-application, there are two steps <br>
+>> 1. First, open the terminal and run the backend server:
+
+```cmd
+  cd api
+  npm run server
+```
+> It should give something like this: <br>
+![image](https://github.com/ShubhamTiwary914/hackIOT-uit/assets/67773966/cfd45b86-e7d1-473b-a377-5c029e6f1d4d)
+
+>> 2. Then, in another terminal(dont close the server's one), run the react server:
+```cmd
+  npm run dev
+```
+
+<br>
+
+> [!NOTE]
+> This is only during development, once server is deployed, there is no need to run the server
 
 
