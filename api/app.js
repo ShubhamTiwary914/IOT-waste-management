@@ -14,7 +14,7 @@ const webRouter = require('./webApp/index')
 const sensorRouter = require('./sensors/index')
 //path[GET]: <host>/
 app.use(webRouter);     
-//path[GET]:  <host>/receiver/
+//path[GET]:  <host>/esp/
 app.use(sensorRouter);  
 
 

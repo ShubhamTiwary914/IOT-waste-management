@@ -4,8 +4,12 @@ const senserRoute = express.Router();
 
 
 
-senserRoute.get('/receiver', (req, res)=>{
-    
+senserRoute.post('/esp/', (req, res)=>{
+    console.log('Device Joined on sensors-PORT!');
+    console.log(req.body)
+    res.json({
+        passed: true
+    })
 })
 
 
