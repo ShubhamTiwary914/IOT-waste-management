@@ -9,9 +9,20 @@ app.use(express.json())
 app.use(cors())
 
 
+//database[mongoose]
+const connector = require('./db/controllers/conn')
+
+const saveUser = require('./tests/saveUser')
+connector().then(()=>{
+    saveUser();
+});
+
+
+
+
 //Routings
-const webRouter = require('./webApp/index')
-const sensorRouter = require('./sensors/index')
+const webRouter = require('./routes/webApp/index')
+const sensorRouter = require('./routes/sensors/index')
 //path[GET]: <host>/
 app.use(webRouter);     
 //path[GET]:  <host>/esp/
