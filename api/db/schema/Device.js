@@ -3,7 +3,10 @@ const mongoose = require('mongoose')
 const deviceSchema = new mongoose.Schema({
     user_id: mongoose.SchemaTypes.ObjectId,
     container_no: Number,
-    set_date: Number,
+    set_date: {
+        type: Date,
+        default: ()=> Date.now()
+    },
     fetched_stats: {
         temp: Number,
         humidity: Number,

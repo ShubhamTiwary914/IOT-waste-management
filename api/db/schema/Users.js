@@ -5,10 +5,16 @@ const weekStats = require('./WeekStat')
 
 const userSchema =  new mongoose.Schema({
     uname: String,
-    email: String,
+    email: {
+        type: String,
+        lowercase: true
+    },
     details: {
         location: String,
-        created_date: Date,
+        created_date: {
+            type: Date,
+            default: ()=> Date.now()
+        },
         stats: {
             ttl_fresh_ratio: Number,
             food_types: [String],
