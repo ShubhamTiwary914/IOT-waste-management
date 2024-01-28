@@ -3,7 +3,7 @@
 <br><br>
 
 <h2> Contents </h2>
-<h4> - Use Cases & Application Overview </h4>
+<h4> - Tech Stacks </h4>
 <h4> - Files Structure 📂 </h4>
 <h4> - Setup Guide 🧰 </h4>
 <h4> - How to run 🧪 </h4>
@@ -12,9 +12,14 @@
 
 
 
-<h3> Use Cases & Application Overview </h3>
+<h3> Tech Stacks used </h3>
 
-> Empty for now
+**_Server Side script + Environment_** –   Node.js + npm[9.5.1] <br>
+**_Database [NoSQL]_** –   MongoDB + mongoose <br>
+**_Http Server + Routing_** –   Express.js <br>
+**_Client Side Requests_** –  Axios <br>
+**_IOT Side Requests_** - Wifi Library[Connection] + ArduinoHTTPClient[Requests] + ArduinoJSON[Packaging]  <br>
+
 
 <br><br>
 <hr>
