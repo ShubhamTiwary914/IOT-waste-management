@@ -1,0 +1,150 @@
+.dashboardContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+h2 {
+  grid-column: 1 / -1;
+  color: #333;
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.sectionContainer {
+  background-color: #f8f8f8;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h3 {
+  color: #555;
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.sensorData {
+  background-color: #f1f1f1;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.predictive_data {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.recent_matches {
+  list-style-type: none;
+  padding: 0;
+}
+
+.testimonials {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.testimonial {
+  background-color: #f1f1f1;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial p {
+  margin: 0;
+}
+
+.author {
+  font-style: italic;
+}
+
+.exchange_requests {
+  list-style-type: none;
+  padding: 0;
+}
+
+.impact_insights {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.impact_insights canvas {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.inventory {
+  list-style-type: none;
+  padding: 0;
+}
+
+.availableMatches {
+  list-style: none;
+  padding: 0;
+}
+
+.availableMatches li {
+  margin-bottom: 10px;
+}
+
+.selectedMatch {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #e6f7ff;
+  border-radius: 8px;
+}
+
+.requestMessage {
+  margin-top: 20px;
+}
+
+.requestMessage textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+.requestSubmit {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.dashboard_text {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  text-align: center; /* Center the text */
+}
+
+.sum_content {
+  text-align: left;
+}
+
+.predictive_data p svg,
+.recent_matches li svg,
+.testimonials .testimonial svg,
+.exchange_requests li svg,
+.impact_insights p svg,
+.inventory li svg,
+.sensorData p svg {
+  margin-right: 10px;
+}

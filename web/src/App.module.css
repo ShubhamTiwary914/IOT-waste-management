@@ -1,0 +1,71 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Russo+One&display=swap");
+
+body,
+html {
+  height: 100%;
+  margin: 0 auto;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.navbar {
+  width: 100%;
+  height: 7em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  cursor: pointer;
+  color: rgb(255, 255, 255);
+  /* background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(0, 255, 255, 0.274)); */
+}
+
+.navbar a,
+.navbar a:visited {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+}
+
+.navbar h3{
+  font-size: 24px;
+  padding-bottom: 10px;
+}
+
+.navbarlist {
+  font-family: "Oswald", sans-serif;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.navbarlist li a {
+  display: block;
+  padding: 14px;
+  justify-content: center;
+  font-size: 18px;
+  opacity: 0.8;
+  transition: all 250ms;
+}
+
+.navbarlist li a:hover {
+  /* background-color: rgba(167, 149, 248, 0.438); */
+  font-size: 24px;
+  opacity: 1;
+}
+
+.navbarlist li {
+  float: left;
+}
+
+.name {
+  width: 60%;
+}
+
+.name a {
+  font-family: "Russo One", sans-serif;
+  font-size: 30px;
+}
