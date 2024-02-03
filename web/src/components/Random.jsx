@@ -1,6 +1,6 @@
 import React from 'react'
-import { useEffect } from 'react'
-import Requests from './../connect/requests'
+//import { useEffect } from 'react'
+//import Requests from './../connect/requests'
 
 function Random() {
 

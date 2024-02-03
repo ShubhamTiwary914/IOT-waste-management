@@ -22,6 +22,14 @@ const hostPATH = 'http://localhost:8080'
     fetchUser's method data format: {
         email: "tester@gmail.com"
     }
+
+    linkDevice's method data format: {
+        email: "tester@gmail.com"
+    }
+
+    fetchDevices' method data format: {
+        email: "tester@gmail.com"
+    }
 */ 
 
 
@@ -49,7 +57,7 @@ export default class Requests{
         Requests.httpPOST('/users/', data, callback);
     }
 
-    static async createDevice(data, callback){
+    static async linkDevice(data, callback){
         Requests.httpPOST('/device/create/', data, callback);
     }
 
