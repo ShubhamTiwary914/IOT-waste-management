@@ -5,16 +5,7 @@ const deviceSchema = new mongoose.Schema({
     set_date: {
         type: Date,
         default: ()=> Date.now()
-    },
-
-    containers: [
-        {
-            temp: Number,
-            O2: Number,
-            Co2: Number,
-            duration: Number 
-        }
-    ]
+    }
 })
 
 
