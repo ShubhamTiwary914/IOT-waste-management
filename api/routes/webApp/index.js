@@ -27,7 +27,7 @@ webAppRouter.post('/device/', (req, res)=>{
 
 //register device under user
 webAppRouter.post('/device/create/', (req, res)=>{
-    deviceCollection.registerDevice(req.body, res);
+    deviceCollection.registerDevice(req.body, res);     
 })
 
 

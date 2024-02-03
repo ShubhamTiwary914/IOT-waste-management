@@ -5,8 +5,7 @@ const DeviceModel = require('./../schema/Device').DeviceModel;
 async function registerDevice(reqBody, responder){
     try{
         const newDevice = new DeviceModel({
-            user_id: reqBody.user_id,
-            container_no: reqBody.container_no
+            user_id: reqBody.user_id
         })
         newDevice.save().then(()=>{
             UserModel.findOneAndUpdate(
@@ -28,6 +27,7 @@ async function registerDevice(reqBody, responder){
         })
     }
 }
+
 
 
 async function fetchDevice(deviceID, responder){
