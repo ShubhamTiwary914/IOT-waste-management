@@ -13,13 +13,7 @@ import Dashboard from "./components/Dashboard";
 import Random from "./components/Random";
 
 function App() {
-  //test request made to backend
-  useEffect(() => {
-    Requests.httpGET({}, (res) => {
-      console.log(res);
-    });
-  }, []);
-
+  
   return (
     <div>
       <Container fluid>
@@ -37,7 +31,7 @@ function App() {
           </Routes>
         </Router>
       </Container>
-      {/* <Random /> */}
+      <Random /> 
     </div>
   );
 }

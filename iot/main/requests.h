@@ -13,12 +13,12 @@ class HttpHandler{
         obj["humidity"] = 25;
         obj["container"] = 2;
         obj["device_id"] = 1;
-
+        
         String data;
         serializeJsonPretty(obj, data);
 
         // Send request
-        http.begin("http://192.168.6.63:8080/esp/");
+        http.begin("http://192.168.20.63:8080/esp/");
         http.addHeader("Content-Type", "application/json");
 
         int httpCode = http.POST(data);

@@ -3,7 +3,7 @@ const UserModel = require('./../schema/Users').UserModel;
 async function createUser(userReq, responder){
     try{
         const newUser = new UserModel({
-            uname: userReq.username,
+            uname: userReq.uname,
             email: userReq.email,
             details: {
                 location: userReq.location
