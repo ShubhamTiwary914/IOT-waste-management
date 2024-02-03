@@ -26,8 +26,8 @@ const currStatsSchema = new mongoose.Schema({
 })
 
 
-const DeviceModel = new mongoose.model('devices', deviceSchema);
+const currModel = new mongoose.model('currStats', currStatsSchema);
 module.exports = {
-    deviceSchema,
-    DeviceModel
+    currStatsSchema,
+    currModel
 };

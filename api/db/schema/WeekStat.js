@@ -27,7 +27,7 @@ const weekStats_schema = new mongoose.Schema({
 })
 
 
-const WeekModel = new mongoose.model('week', weekStats_schema)
+const WeekModel = new mongoose.model('weekStats', weekStats_schema)
 module.exports = {
     weekStats_schema,
     WeekModel

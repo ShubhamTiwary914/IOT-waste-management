@@ -1,7 +1,9 @@
 const UserModel = require('./../schema/Users').UserModel;
 const DeviceModel = require('./../schema/Device').DeviceModel;
+const currStatsModel = require('./../schema/CurrStats').currModel;
 
 
+//add device id to user's devices id array
 async function registerDevice(reqBody, responder){
     try{
         const newDevice = new DeviceModel({
@@ -14,7 +16,7 @@ async function registerDevice(reqBody, responder){
             ).then(data=>{
                 responder.json({
                     response: "Success",
-                    iD: newDevice._id
+                    id: newDevice._id
                 })
             });
             
@@ -22,27 +24,36 @@ async function registerDevice(reqBody, responder){
     }
     catch(err){
         responder.json({ 
-            response: "Error: Device not created!",
+            response: "Error: Device not linked!",
             error_: err
         })
     }
 }
 
 
-
-async function fetchDevice(deviceID, responder){
-    try{
-        DeviceModel.find({ _id: deviceID }).then(data=> responder.json(data));
-    }
-    catch(err){
-        responder.json({ 
-            response: "Error: Device data couldnt be fetched!",
-            error_: err
+//*Fetch Data from stats/real time
+//real time data
+async function fetchDevice_curr(reqBody, responder){ 
+    currStatsModel.find({ device_id: reqBody.device_id })
+        .then(res =>{
+            responder.json(res);
         })
-    }
+
 }
+
+//weekly and monthly data
+async function fetchDevice_week(deviceID, responder){
+
+}
+async function fetchDevice_month(deviceID, responder){
+
+}
+
+
 
 module.exports = {
     registerDevice,
-    fetchDevice
+    fetchDevice_curr,
+    fetchDevice_week,
+    fetchDevice_month
 }

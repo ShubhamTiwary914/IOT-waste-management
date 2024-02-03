@@ -11,11 +11,7 @@ app.use(cors())
 
 //database[mongoose]
 const connector = require('./db/controllers/conn')
-
-const saveUser = require('./tests/saveUser')
-connector().then(()=>{
-    saveUser();
-});
+connector();
 
 
 

@@ -6,7 +6,7 @@ const deviceCollection = require('./../../db/controllers/devices')
 
 //*USER ROUTE ---
 //fetch user data
-webAppRouter.post('/users/', (req, res)=>{
+webAppRouter.post('/users/check/', (req, res)=>{
     userCollection.fetchUser(req.body.email, res);
 })
 
@@ -18,16 +18,26 @@ webAppRouter.post('/users/create/', (req, res)=>{
 
 
 
-
 //*DEVICES ROUTE ---
-//fetch raw device data by id
-webAppRouter.post('/device/', (req, res)=>{
-    deviceCollection.fetchDevice(req.body.deviceID, res);
+//register device under user
+webAppRouter.post('/device/link/', (req, res)=>{
+    deviceCollection.registerDevice(req.body, res);
 })
 
-//register device under user
-webAppRouter.post('/device/create/', (req, res)=>{
-    deviceCollection.registerDevice(req.body, res);     
+
+
+
+//fetch device data and return to user
+webAppRouter.post('/device/fetch/curr/', (req, res)=>{
+    deviceCollection.fetchDevice_curr(req.body, res)
+})
+
+webAppRouter.post('/device/fetch/week/', (req, res)=>{
+    deviceCollection.fetchDevice_week(req.body, res)
+})
+
+webAppRouter.post('/device/fetch/month/', (req, res)=>{
+    deviceCollection.fetchDevice_month(req.body, res)
 })
 
 
