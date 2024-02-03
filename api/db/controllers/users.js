@@ -1,5 +1,4 @@
 const UserModel = require('./../schema/Users').UserModel;
-
 async function createUser(userReq, responder){
     try{
         const newUser = new UserModel({

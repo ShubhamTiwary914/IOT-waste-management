@@ -9,15 +9,15 @@ const currStatsSchema = new mongoose.Schema({
                 type: Date,
                 default: ()=> Date.now()
             },
-            time: {
-                
-            },
+            time: String,
             data: {
                 temp: Number,
                 containers: [
                     {
+                        item: String,
                         o2: Number,
-                        co2: Number
+                        co2: Number,
+                        weight: Number
                     }
                 ]
             }

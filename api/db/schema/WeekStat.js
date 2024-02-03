@@ -13,8 +13,10 @@ const weekStats_schema = new mongoose.Schema({
                         temp: Number,
                         containers: [
                             {
+                                item: String,
                                 o2: Number,
-                                co2: Number
+                                co2: Number,
+                                weight: Number
                             }
                         ]
                     }
