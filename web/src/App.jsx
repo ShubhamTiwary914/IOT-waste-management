@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import { Container, Navbar, Nav } from "react-bootstrap";
 import styles from './App.module.css';
+import logo from './assets/akatsuki.png'
 
 import Dashboard from "./components/Dashboard";
 import Random from "./components/Random";
@@ -20,6 +21,7 @@ function App() {
         <Router>
           <Navbar className={styles.navbar}>
             <div className={styles.name}>
+              <img src={logo} className={styles.logo} />
               <a href="/">Akatsuki</a>
             </div>
             <h3>Hyperlocal Food Sharing Network with Predictive Spoilage</h3>

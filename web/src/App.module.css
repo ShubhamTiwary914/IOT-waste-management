@@ -66,6 +66,12 @@ html {
 }
 
 .name a {
+  position: absolute;
   font-family: "Russo One", sans-serif;
   font-size: 30px;
+  top: 3.5%;
+}
+
+.logo{
+  max-width: 7%;
 }
