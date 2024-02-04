@@ -19,11 +19,13 @@ connector();
 //Routings
 const webRouter = require('./routes/webApp/index')
 const sensorRouter = require('./routes/sensors/index')
-//path[GET]: <host>/
+const predictRouter = require('./routes/predict/predict')
+//path[POST]: <host>/
 app.use(webRouter);     
-//path[GET]:  <host>/esp/
+//path[POST]:  <host>/esp/
 app.use(sensorRouter);  
-
+//path[POST]:  <host>/predict/
+app.use(predictRouter);
 
 
 

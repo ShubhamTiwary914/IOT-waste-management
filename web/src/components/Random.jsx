@@ -2,9 +2,9 @@ import React from 'react'
 //import { useEffect } from 'react'
 //import Requests from './../connect/requests'
 
+
+
 function Random() {
-
-
 
   /* User Creation
   const testUser = {
@@ -41,7 +41,6 @@ function Random() {
   }
   */
   
-
 
   return (
     <div>

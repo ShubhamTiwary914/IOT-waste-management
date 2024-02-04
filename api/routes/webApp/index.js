@@ -18,14 +18,13 @@ webAppRouter.post('/users/create/', (req, res)=>{
 
 
 
+
+
 //*DEVICES ROUTE ---
 //register device under user
 webAppRouter.post('/device/link/', (req, res)=>{
     deviceCollection.registerDevice(req.body, res);
 })
-
-
-
 
 //fetch device data and return to user
 webAppRouter.post('/device/fetch/curr/', (req, res)=>{

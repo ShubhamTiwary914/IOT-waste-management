@@ -1,4 +1,3 @@
-const deviceCollection = require('./../schema/Device').DeviceModel;
 const currStatsModel = require('./../schema/CurrStats').currModel;
 const weekStatsModel = require('./../schema/WeekStat').WeekModel;
 

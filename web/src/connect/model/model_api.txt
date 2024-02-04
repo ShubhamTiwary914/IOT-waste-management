@@ -1,0 +1,53 @@
+1.	Create an Express Route for Predictions: In your Express app, create a route that handles predictions. This route will load the trained model, accept input data, make predictions, and return the results.
+
+    const express = require('express');
+    const bodyParser = require('body-parser');
+    const joblib = require('joblib'); // You might need to install the 'joblib' library
+
+    const app = express();
+    const port = 3000; // Choose a port number
+
+    // Use middleware to parse JSON requests
+    app.use(bodyParser.json());
+
+    // Load the trained model
+    const model = joblib.load('path/to/your/model.pkl');
+
+    // Endpoint for making predictions
+    app.post('/predict', (req, res) => {
+        const { temperature } = req.body;
+
+        // Make predictions
+        const prediction = model.predict([[temperature]])[0];
+
+        // Send the prediction as JSON response
+        res.json({ prediction });
+    });
+
+    // Start the server
+    app.listen(port, () => {
+        console.log(`Server is running on port ${port}`);
+    });
+
+
+Make sure to replace 'path/to/your/model.pkl' with the actual path where your trained model is saved.
+2.	Test the API Locally: Start your Express server, and test the /predict endpoint locally using a tool like Postman or cURL. Send a POST request to http://localhost:3000/predict with a JSON payload containing the input data (e.g., { "temperature": 25 }).
+3.	Update Your React Web App: In your React web app, use the fetch function or a library like Axios to make requests to the /predict endpoint.
+
+    // Example using fetch
+    const predictSpoilingTime = async (temperature) => {
+        const response = await fetch('http://localhost:3000/predict', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ temperature }),
+        });
+
+        const data = await response.json();
+        console.log('Predicted Spoiling Time:', data.prediction);
+    };
+
+
+Update the URL to match your actual server URL.
+This is a basic setup, and you might need to enhance it based on your project's structure and requirements. If you have specific questions or encounter any issues, feel free to ask!
