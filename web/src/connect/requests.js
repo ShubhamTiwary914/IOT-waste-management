@@ -6,37 +6,35 @@ import axios from "axios";
 const hostPATH = 'http://localhost:8080'
 
 
-
-
-
-
 /*
-    createUser's method data format:  {
+    *createUser's method data format:  {
         uname: "Tester",
         email: "tester@gmail.com",
         details: {
             location: "23'342543N 28'456738S"
         }
     }
-
-    fetchUser's method data format: {
+    *fetchUser's method data format: {
         email: "tester@gmail.com"
     }
 
-    linkDevice's method data format: {
-        email: "tester@gmail.com"
-    }
 
-    fetchDevices' method data format: {
-        email: "tester@gmail.com"
+
+    *linkDevice's method data format: {
+        user_id: "x057647856786"
     }
+\
+
+    !NOTE:  fetcing devices need no parameters -> as devices' data are already stored when user logins
+    i.e: 
+    *fetchDevices' real time method data format:  NULL
+    *fetchDevices' curr week  method data format:  NULL
+    *fetchDevices' curr month method data format:  NULL
 */ 
 
 
-
-
 export default class Requests{
-    static async httpPOST(uriPATH, data, callback){
+    static httpPOST(uriPATH, data, callback){
         axios.post(`${hostPATH}${uriPATH}`, data)
         .then(res =>{
             callback(res);
@@ -46,24 +44,44 @@ export default class Requests{
         })
     }
 
-
-
     static async createUser(data, callback){
         Requests.httpPOST('/users/create/', data, callback);
     }
 
-
     static async fetchUser(data, callback){
-        Requests.httpPOST('/users/', data, callback);
+        Requests.httpPOST('/users/check/', data, (res)=>{
+            sessionStorage.setItem('device_id', res.data[0].devices);
+            callback(res.data[0]);
+        });
     }
 
     static async linkDevice(data, callback){
         Requests.httpPOST('/device/create/', data, callback);
     }
 
-    static async fetchDevice(data, callback){
-        Requests.httpPOST('/device/', data, callback);
+
+
+    //device data for the day -> every 10 sec interval [limited by 1440x6 [minutes in a day]]
+    static async fetchDevice_realTime(callback){
+        const device_id = sessionStorage.getItem('device_id');
+        Requests.httpPOST('/device/fetch/curr/', {
+            device_id: device_id
+        }, res=>{
+            callback(res.data[0].stats)
+        });
     }
+
+
+    static async fetchDevice_currWeek(callback){
+
+    }
+
+
+    static async fetchDevice_currMonth(callback){
+
+    }
+
+
 }
 
 

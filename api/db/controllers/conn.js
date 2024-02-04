@@ -1,12 +1,14 @@
 const mongoose = require('mongoose');
-const hostName = 'mongodb://127.0.0.1';
-const dbName = 'hackiot-uu';
+
+const dbName = 'hackiot-uu'
+const hostName = 'mongodb.net'
+const dbPATH = `mongodb+srv://shubhamtiwary914:c7g3JBFZK8YCqzZS@${dbName}.9ukkwqf.${hostName}/`;
 
 
 
 async function connectDatabase(){
     try{
-        await mongoose.connect(`${hostName}/${dbName}`).then(()=>{
+        await mongoose.connect(dbPATH).then(()=>{
             console.log(`Connected to database ${dbName} @host:${hostName}`);
         });
     }
