@@ -1,0 +1,4 @@
+Arduino UNO & ESP32 Configuration:-
+Arduino RX -> ESP TX
+Arduino TX -> ESP RX
+GND -> GND

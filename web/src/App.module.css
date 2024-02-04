@@ -16,11 +16,12 @@ html {
   height: 7em;
   display: flex;
   align-items: center;
-  justify-content: center;
+  /* justify-content: space-between; */
   top: 0;
+  padding-left: 30px;
+  padding-right: 30px;
   cursor: pointer;
   color: rgb(255, 255, 255);
-  /* background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(0, 255, 255, 0.274)); */
 }
 
 .navbar a,
@@ -29,49 +30,56 @@ html {
   color: rgb(0, 0, 0);
 }
 
-.navbar h3{
-  font-size: 24px;
+.navbar h3 {
+  font-size: 28px;
   padding-bottom: 10px;
 }
 
 .navbarlist {
   font-family: "Oswald", sans-serif;
   list-style-type: none;
+  align-items: center;
   margin: 0;
-  padding: 0;
+  padding-bottom: 10px;
   overflow: hidden;
+  flex: 1/2;
 }
 
 .navbarlist li a {
   display: block;
   padding: 14px;
+  padding-right: 20px;
   justify-content: center;
-  font-size: 18px;
+  font-size: 22px;
   opacity: 0.8;
   transition: all 250ms;
 }
 
-.navbarlist li a:hover {
-  /* background-color: rgba(167, 149, 248, 0.438); */
+/* .navbarlist li a:hover {
   font-size: 24px;
   opacity: 1;
-}
+} */
 
 .navbarlist li {
   float: left;
 }
 
+.title{
+  flex: 2;
+}
+
 .name {
-  width: 60%;
+  flex: 1.1;
+  display: flex;
+  align-items: center;
 }
 
 .name a {
-  position: absolute;
   font-family: "Russo One", sans-serif;
   font-size: 30px;
-  top: 3.5%;
 }
 
-.logo{
-  max-width: 7%;
+.logo {
+  max-width: 10%;
 }
+
