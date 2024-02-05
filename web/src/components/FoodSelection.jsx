@@ -11,6 +11,7 @@ function FoodSelection() {
   const foodItems = [
     { id: 1, name: "Apple" },
     { id: 2, name: "Banana" },
+    { id: 3, name: "Lemons" },
   ];
 
   const [containerData, setContainerData] = useState([
