@@ -21,7 +21,6 @@ class HttpHandler{
         //data json
         JsonObject data = main.createNestedObject("data");
         data["temp"] = 34.5;
-
         //container array
         JsonArray containers = data.createNestedArray("containers");
         

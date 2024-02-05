@@ -26,6 +26,18 @@ webAppRouter.post('/device/link/', (req, res)=>{
     deviceCollection.registerDevice(req.body, res);
 })
 
+webAppRouter.post('/device/setitems/', (req, res)=>{
+    deviceCollection.setItemNames(req.body, res);
+})
+
+webAppRouter.post('/device/getitems/', (req, res)=>{
+    deviceCollection.getItemNames(req.body, res);
+})
+
+
+
+
+
 //fetch device data and return to user
 webAppRouter.post('/device/fetch/curr/', (req, res)=>{
     deviceCollection.fetchDevice_curr(req.body, res)

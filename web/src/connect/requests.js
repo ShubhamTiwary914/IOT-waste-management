@@ -23,6 +23,18 @@ const hostPATH = 'http://localhost:8080'
     *linkDevice's method data format: {
         user_id: "x057647856786"
     }
+
+    *getItems's method data format: NULL
+
+
+
+    *setItems's method data format: {
+        itemNames: [
+            "Banana",
+            "Apple",
+            "Potato"
+        ]
+    }
 \
 
     !NOTE:  fetcing devices need no parameters -> as devices' data are already stored when user logins
@@ -57,6 +69,23 @@ export default class Requests{
 
     static async linkDevice(data, callback){
         Requests.httpPOST('/device/create/', data, callback);
+    }
+
+
+    static async getItems(callback){
+        const data = {
+            device_id: sessionStorage.getItem("device_id")
+        }
+        Requests.httpPOST('/device/getitems/', data, (res)=>{
+            callback(res.data);
+        });
+    }
+
+    static async setItems(data, callback){
+        data["device_id"] = sessionStorage.getItem("device_id");
+        Requests.httpPOST('/device/setitems/', data, (res)=>{
+            callback(res.data.data);
+        });
     }
 
 
