@@ -14,7 +14,7 @@ async function connectDatabase(){
     }
     catch(err){
         console.log(`Failed connecteing to database ${dbName} @host:${hostName}`);
-        console.log($`Error Status: ${err}`);
+        console.log(`Error Status: ${err}`);
     }
 }
 

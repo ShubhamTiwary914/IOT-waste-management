@@ -10,7 +10,9 @@ HttpHandler httpHandler;
 void setup() {
     Serial.begin(9600); 
     wifiHandler.connectWifi();
-    httpHandler.postData();
 }
 
-void loop(){}
+void loop(){
+   httpHandler.postData();
+   delay(1000);
+}

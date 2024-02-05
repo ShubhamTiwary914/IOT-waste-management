@@ -5,7 +5,8 @@ const deviceSchema = new mongoose.Schema({
     set_date: {
         type: Date,
         default: ()=> Date.now()
-    }
+    },
+    itemNames: [String] //item names in containers[by-index]
 })
 
 

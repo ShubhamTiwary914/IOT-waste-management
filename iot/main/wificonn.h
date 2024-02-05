@@ -1,6 +1,5 @@
 #include <WiFi.h>
 
-
 class WifiConn{
     public:
       const char* ssid = "shubhamtw";        
