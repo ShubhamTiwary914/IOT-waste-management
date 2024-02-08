@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "../styles/blocks.module.css";
 import Icon from "@mdi/react";
 import Chart from "chart.js/auto";
-// import { Line } from "react-chartjs-2";
+import Requests from "../connect/requests";
 import {
   mdiChartLine,
   mdiFoodApple,
@@ -101,35 +101,71 @@ function Dashboard() {
     { id: 3, foodType: "Canned Beans", quantity: 40 },
   ]);
 
+  // Dummy data for timestamps when more food items were added
+  const [foodChanges, setFoodChanges] = useState([
+    { id: 1, foodType: "Rice", change: "+10", timestamp: "10:30 AM" },
+    { id: 2, foodType: "Pasta", change: "-5", timestamp: "11:45 AM" },
+    { id: 3, foodType: "Canned Beans", change: "+20", timestamp: "1:15 PM" },
+  ]);
+
   const [sensorData, setSensorData] = useState({
     temperature: "updating", //25,
-    gasLevels: {
-      O2: "updating", //"Normal",
-      CO2: "updating", //"Normal",
-    },
+    gasLevels1: "updating",
+    gasLevels2: "updating",
+    gasLevels3: "updating",
   });
 
+  // Generates Random Data for Sensors
   useEffect(() => {
     // Simulate real-time updates every 5 seconds
     const interval = setInterval(() => {
       // Replace the following lines with actual data fetching from your sensors
+
+      // For temperature, it's common for all containers
       const newTemperature = getRandomTemperature();
-      const newO2Level = getRandomGasLevel();
-      const newCO2Level = getRandomGasLevel();
+
+      // For gas levels, we set data for each container individually
+      const newO2Level1 = getRandomGasLevel();
+      const newCO2Level1 = getRandomGasLevel();
+
+      const newO2Level2 = getRandomGasLevel();
+      const newCO2Level2 = getRandomGasLevel();
+
+      const newO2Level3 = getRandomGasLevel();
+      const newCO2Level3 = getRandomGasLevel();
 
       setSensorData((prevData) => ({
         ...prevData,
         temperature: newTemperature,
-        gasLevels: {
-          O2: newO2Level,
-          CO2: newCO2Level,
+        gasLevels1: {
+          O2: newO2Level1,
+          CO2: newCO2Level1,
+        },
+        gasLevels2: {
+          O2: newO2Level2,
+          CO2: newCO2Level2,
+        },
+        gasLevels3: {
+          O2: newO2Level3,
+          CO2: newCO2Level3,
         },
       }));
     }, 5000);
 
-    // Cleanup the interval on component unmount
     return () => clearInterval(interval);
   }, []);
+
+  // Fetch Device Data
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     // Fetch real-time sensor data every 5 seconds
+  //     Requests.fetchDevice_realTime((res) => {
+  //       setSensorData(res);
+  //     });
+  //   }, 5000);
+
+  //   return () => clearInterval(interval); // Cleanup interval on unmount
+  // }, []);
 
   const getRandomTemperature = () => {
     // Replace this with actual logic to get temperature data
@@ -137,9 +173,8 @@ function Dashboard() {
   };
 
   const getRandomGasLevel = () => {
-    // Replace this with actual logic to get gas level data
-    const levels = ["Normal", "High", "Low"];
-    return levels[Math.floor(Math.random() * levels.length)];
+    // Generate a random gas level between 400 and 1000
+    return Math.floor(Math.random() * (1000 - 400 + 1)) + 400;
   };
 
   const availableMatches = [
@@ -323,15 +358,41 @@ function Dashboard() {
 
       {/* Inventory Section */}
       <div className={styles.sectionContainer}>
-        <h3>
+        <h3 className={styles.sectionTitle}>
           <Icon path={mdiPackage} size={1} />
           Inventory
         </h3>
-        <ul className={styles.inventory}>
-          {inventory.map((item) => (
-            <li key={item.id}>{`${item.foodType}: ${item.quantity}`}</li>
-          ))}
-        </ul>
+
+        {/* Real-time Quantity */}
+        <div className={styles.inventorySection}>
+          <h4 className={styles.inventoryTitle}>
+            <Icon path={mdiPackage} size={0.8} /> Real-time Quantity
+          </h4>
+          <ul className={styles.inventoryList}>
+            {inventory.map((item) => (
+              <li key={item.id} className={styles.inventoryItem}>
+                <span className={styles.foodType}>{item.foodType}</span>:{" "}
+                <span className={styles.quantity}>{item.quantity}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Food Changes Section */}
+        <div className={styles.foodChanges}>
+          <ul className={styles.foodChangesList}>
+            {foodChanges.map((change) => (
+              <li key={change.id} className={styles.foodChangeItem}>
+                <p className={styles.foodChange}>
+                  <span className={styles.foodType}>{change.foodType}</span>{" "}
+                  <span className={styles.change}>{change.change}</span>
+                  <span className={styles.arrow}>➔</span>
+                  <span className={styles.timestamp}>{change.timestamp}</span>
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
 
       {/* Sensor Data Section */}
@@ -340,10 +401,27 @@ function Dashboard() {
           <Icon path={mdiThermometer} size={1} />
           Sensor Data
         </h3>
+        <p>{`Temperature: ${sensorData.temperature} °C`}</p>
+
+        {/* Container 1 */}
         <div className={styles.sensorData}>
-          <p>{`Temperature: ${sensorData.temperature} °C`}</p>
-          <p>{`Gas Level (O2): ${sensorData.gasLevels.O2}`}</p>
-          <p>{`Gas Level (CO2): ${sensorData.gasLevels.CO2}`}</p>
+          <h4>Gas Levels Container 1</h4>
+          <p>{`Gas Levels (O2): ${sensorData.gasLevels1.O2} ppm`}</p>
+          <p>{`Gas Levels (CO2): ${sensorData.gasLevels1.CO2} ppm`}</p>
+        </div>
+
+        {/* Container 2 */}
+        <div className={styles.sensorData}>
+          <h4>Gas Levels Container 2</h4>
+          <p>{`Gas Levels (O2): ${sensorData.gasLevels2.O2} ppm`}</p>
+          <p>{`Gas Levels (CO2): ${sensorData.gasLevels2.CO2} ppm`}</p>
+        </div>
+
+        {/* Container 3 */}
+        <div className={styles.sensorData}>
+          <h4>Gas Levels Container 3</h4>
+          <p>{`Gas Levels (O2): ${sensorData.gasLevels3.O2} ppm`}</p>
+          <p>{`Gas Levels (CO2): ${sensorData.gasLevels3.CO2} ppm`}</p>
         </div>
       </div>
     </div>

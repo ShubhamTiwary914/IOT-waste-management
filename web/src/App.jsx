@@ -15,6 +15,11 @@ import Profile from "./components/Profile";
 import Random from "./components/Random";
 
 function App() {
+  useEffect(() => {
+    // Fetch user data when the app loads
+    Requests.fetchUser({ email: "tester@gmail.com" }, (res) => {});
+  }, []);
+
   return (
     <div>
       <Container fluid>
