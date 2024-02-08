@@ -52,6 +52,4 @@ webAppRouter.post('/device/fetch/month/', (req, res)=>{
 })
 
 
-
-
 module.exports = webAppRouter;

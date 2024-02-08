@@ -8,6 +8,7 @@ class HttpHandler{
     HTTPClient http;
     const char* device_id = "65bf8b8e65186267b817fe33";
     const char* host = "http://192.168.41.63:8080/esp/post";
+    //Temp tempObj;
 
 
     void postData(){
@@ -24,7 +25,6 @@ class HttpHandler{
         //container array
         JsonArray containers = data.createNestedArray("containers");
         
-       
           
         for(int i=0; i<3; i++){ 
             JsonObject containerObj = containers.createNestedObject();

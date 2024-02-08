@@ -11,25 +11,8 @@ void loop() {
     // Wait for data to be available
   }
 
-  // Read the message from Arduino
-  String jsonString = Serial2.readString();
-
-  // Deserialize JSON
-  DynamicJsonDocument doc(200);
-  deserializeJson(doc, jsonString);
-
-  // Extract data from JSON
-  String sensor = doc["sensor"];
-  float temperature = doc["temperature"];
-  float humidity = doc["humidity"];
-
-  // Print received data
-  Serial.print("Received from Arduino - Sensor: ");
-  Serial.print(sensor);
-  Serial.print(", Temperature: ");
-  Serial.print(temperature);
-  Serial.print(", Humidity: ");
-  Serial.println(humidity);
+  String message = Serial2.readStringUntil('\n');
+  Serial.println("Received from Arduino: " + message);
 
   delay(1000);  // Wait for a moment before receiving the next message
 }

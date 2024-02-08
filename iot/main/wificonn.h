@@ -2,8 +2,8 @@
 
 class WifiConn{
     public:
-      const char* ssid = "shubhamtw";        
-      const char* password = "yugy6676"; 
+      const char* ssid = "Let me die";        
+      const char* password = "nightcore"; 
 
       void connectWifi(){
           int resetCount = 0;
