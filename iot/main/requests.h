@@ -1,43 +1,31 @@
 #include "string.h"
 #include <ArduinoJson.h>
-#include <HTTPClient.h>
+#include <ESP8266HTTPClient.h>
+#include <ESP8266WiFi.h>
+
 
 
 class HttpHandler{
   public:
     HTTPClient http;
-    const char* device_id = "65bf8b8e65186267b817fe33";
-    const char* host = "http://192.168.41.63:8080/esp/post";
+    String device_id = "65bf8b8e65186267b817fe33";
+    String host = "http://192.168.243.63:8080/esp/post";
     //Temp tempObj;
 
-    void postData(){
-        String jsonString;
-        DynamicJsonDocument json(512);
+    bool postData(String jsonString){
 
-        //total packet json
-        JsonObject main = json.to<JsonObject>();
-        main["device_id"] = device_id;
-
-        //data json
-        JsonObject data = main.createNestedObject("data");
-        data["temp"] = 34.5;
-        //container array
-        JsonArray containers = data.createNestedArray("containers");
-        
-          
-        for(int i=0; i<3; i++){ 
-            JsonObject containerObj = containers.createNestedObject();
-            containerObj["o2"] = 5.2;
-            containerObj["co2"] = 78.2;
-            containerObj["weight"] = 5325;
-        }
-
-        //serialize & POST
-        serializeJsonPretty(main, jsonString);
-        //change ip here according to local ip of device that runs backend
-        http.begin(host);
+        http.begin(WifiClient(), host);
         http.addHeader("Content-Type", "application/json");
-        http.POST(jsonString);
-        http.end();
+        int responseCode = http.POST(jsonString);
+
+        if(responseCode > 0){
+          http.end();
+          return true;
+        }else{
+          http.end();
+          return false;
+        } 
     }
 };
+
+

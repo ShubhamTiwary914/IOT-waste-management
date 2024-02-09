@@ -15,7 +15,8 @@ senserRoute.post('/esp/link/', (req, res)=>{
 
 senserRoute.post('/esp/post/', (req, res)=>{
     console.log("Data Received from esp32");
-    updatesHandler.updateRealTime(req.body, res)
+    console.log(req.body);
+    //updatesHandler.updateRealTime(req.body, res)
 })
 
 
