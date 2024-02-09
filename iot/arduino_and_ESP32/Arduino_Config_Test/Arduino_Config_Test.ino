@@ -1,24 +1,35 @@
 #include <ArduinoJson.h>
+#include <DHT.h>
+
+// Define sensor pins
+#define DHT_PIN 2
+
+// Create instances of sensors
+DHT dht(DHT_PIN, DHT11);
 
 void setup() {
-  Serial.begin(9600);  // Serial monitor for debugging
+  Serial.begin(9600);
+  dht.begin();
 }
 
 void loop() {
-  // Create a JSON document
-  DynamicJsonDocument doc(200);
+  // Read sensor data
+  float temperature = dht.readTemperature();
+  float humidity = dht.readHumidity();
 
-  // Add data to the JSON document
-  doc["sensor"] = "DHT11";
-  doc["temperature"] = 25.5;
-  doc["humidity"] = 60;
+  // Create JSON object
+  DynamicJsonDocument doc(2048);
+  doc["temperature"] = temperature;
+  doc["humidity"] = humidity;
 
-  // Serialize JSON to a String
+  // Serialize JSON to string
   String jsonString;
   serializeJson(doc, jsonString);
 
-  // Send JSON data to ESP32
+  // Send JSON string to ESP32 via serial
   Serial.println(jsonString);
+  
+  Serial.println("Data sent to ESP");
 
-  delay(2000);  // Wait for a moment before sending the next data
+  delay(5000);  // Adjust delay based on your needs
 }
