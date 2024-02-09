@@ -10,7 +10,6 @@ class HttpHandler{
     const char* host = "http://192.168.41.63:8080/esp/post";
     //Temp tempObj;
 
-
     void postData(){
         String jsonString;
         DynamicJsonDocument json(512);
@@ -42,4 +41,3 @@ class HttpHandler{
         http.end();
     }
 };
-
