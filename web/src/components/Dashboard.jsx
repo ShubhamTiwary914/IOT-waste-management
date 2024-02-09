@@ -110,6 +110,7 @@ function Dashboard() {
 
   const [sensorData, setSensorData] = useState({
     temperature: "updating", //25,
+    humidity: "updating", //60,
     gasLevels1: "updating",
     gasLevels2: "updating",
     gasLevels3: "updating",
@@ -122,21 +123,23 @@ function Dashboard() {
       // Replace the following lines with actual data fetching from your sensors
 
       // For temperature, it's common for all containers
-      const newTemperature = getRandomTemperature();
+      const newTemperature = getTemperature();
+      const newHumidity = getHumidity();
 
       // For gas levels, we set data for each container individually
-      const newO2Level1 = getRandomGasLevel();
-      const newCO2Level1 = getRandomGasLevel();
+      const newO2Level1 = getGasLevel1();
+      const newCO2Level1 = getGasLevel1();
 
-      const newO2Level2 = getRandomGasLevel();
-      const newCO2Level2 = getRandomGasLevel();
+      const newO2Level2 = getGasLevel2();
+      const newCO2Level2 = getGasLevel2();
 
-      const newO2Level3 = getRandomGasLevel();
-      const newCO2Level3 = getRandomGasLevel();
+      const newO2Level3 = getGasLevel3();
+      const newCO2Level3 = getGasLevel3();
 
       setSensorData((prevData) => ({
         ...prevData,
         temperature: newTemperature,
+        humidity: newHumidity,
         gasLevels1: {
           O2: newO2Level1,
           CO2: newCO2Level1,
@@ -150,7 +153,7 @@ function Dashboard() {
           CO2: newCO2Level3,
         },
       }));
-    }, 5000);
+    }, 1000);
 
     return () => clearInterval(interval);
   }, []);
@@ -162,17 +165,32 @@ function Dashboard() {
   //     Requests.fetchDevice_realTime((res) => {
   //       setSensorData(res);
   //     });
-  //   }, 5000);
+  //   }, 1000);
 
   //   return () => clearInterval(interval); // Cleanup interval on unmount
   // }, []);
 
-  const getRandomTemperature = () => {
+  const getTemperature = () => {
     // Replace this with actual logic to get temperature data
     return Math.floor(Math.random() * 30) + 20;
   };
 
-  const getRandomGasLevel = () => {
+  const getHumidity = () => {
+    // Replace this with actual logic to get temperature data
+    return Math.floor(Math.random() * 30) + 20;
+  };
+
+  const getGasLevel1 = () => {
+    // Generate a random gas level between 400 and 1000
+    return Math.floor(Math.random() * (1000 - 400 + 1)) + 400;
+  };
+
+  const getGasLevel2 = () => {
+    // Generate a random gas level between 400 and 1000
+    return Math.floor(Math.random() * (1000 - 400 + 1)) + 400;
+  };
+
+  const getGasLevel3 = () => {
     // Generate a random gas level between 400 and 1000
     return Math.floor(Math.random() * (1000 - 400 + 1)) + 400;
   };
@@ -402,6 +420,7 @@ function Dashboard() {
           Sensor Data
         </h3>
         <p>{`Temperature: ${sensorData.temperature} °C`}</p>
+        <p>{`Humidity: ${sensorData.humidity}`}</p>
 
         {/* Container 1 */}
         <div className={styles.sensorData}>

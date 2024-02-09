@@ -1,4 +1,5 @@
 #include <ArduinoJson.h>
+#include <SoftwareSerial.h>
 
 class Sensors {
   public:
