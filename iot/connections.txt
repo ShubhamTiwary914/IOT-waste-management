@@ -1,4 +1,12 @@
-Arduino UNO & ESP32 Configuration:-
-Arduino RX -> ESP TX
-Arduino TX -> ESP RX
+Arduino UNO & ESP8266 Configuration:-
+Arduino RX (0) -> ESP TX (3)
+Arduino TX (1) -> ESP RX (4)
 GND -> GND
+5V -> 3v3
+
+
+
+DHT11 & Arduino Config: -
+GND -> GND
+5V -> VCC
+D -> 2
