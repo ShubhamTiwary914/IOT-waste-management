@@ -1,35 +1,78 @@
-#include "wificonn.h"
-#include "temp.h"
-#include "requests.h"
-#include <ArduinoJson.h>
+//#include <ArduinoJson.h>
+#include <ESP8266HTTPClient.h>
+#include <ESP8266WiFi.h>
 
-<<<<<<< HEAD
-//WifiConn wifiHandler;
-//HttpHandler httpHandler;
-=======
-WifiConn wifiHandler;
-Sensors sen;
-HttpHandler httpHandler;
->>>>>>> eb7f110ba6ac4552641336ab656182acffe9ce0c
+
+
+#define BAUD_RATE 9600
+const char* ssid = "Let me die";        
+const char* password = "nightcore"; 
+
+HTTPClient http;
+WiFiClient wifi;
+
+String device_id = "65bf8b8e65186267b817fe33";
+String host = "http://192.168.243.63:8080/esp/post";
+
+
+
+void connectWifi(){
+    int resetCount = 0;
+    WiFi.begin(ssid, password);
+    Serial.println("Connecting");
+    while(WiFi.status() != WL_CONNECTED) {
+      delay(500);
+      Serial.print(".");
+      resetCount++;
+      if(resetCount > 10)
+        break;
+    }
+
+    if(WiFi.status() == WL_CONNECTED){
+        Serial.println("\nConnected to WiFi network with IP Address: ");
+        Serial.println(WiFi.localIP());
+    }
+    else{
+        Serial.print("Failed: Attempting to reconnect: \n"); 
+        connectWifi();
+    }
+}
+
+
+
+bool postData(String jsonString){
+      http.begin(wifi, host);
+      http.addHeader("Content-Type", "application/json");
+      int responseCode = http.POST(jsonString);
+
+      if(responseCode > 0){
+        http.end();
+        return true;
+      }else{
+        http.end();
+        return false;
+      } 
+}
+
 
 void setup() {
-    Serial.begin(9600); 
-    Serial2.begin(9600, SERIAL_8N1, 21, 22);    
-    wifiHandler.connectWifi();
-    Serial.println("Setup Finished");
->>>>>>> eb7f110ba6ac4552641336ab656182acffe9ce0c
+   Serial.begin(BAUD_RATE);
+   connectWifi();
 }
 
 
 void loop(){
-<<<<<<< HEAD
-  while (!Serial2.available()){ }
-=======
-  if (Serial2.available()){
-    Serial.println("Loop Started");
-    sen.temp();
->>>>>>> eb7f110ba6ac4552641336ab656182acffe9ce0c
-
-    delay(5000);
+  //arduino sends delay - 1000ms default
+   if (Serial.available() > 0) {
+    String jsonString = Serial.readStringUntil('\n');
+    Serial.print(postData(jsonString));
   }
+  else
+    delay(200);
 }
+
+
+
+
+
+

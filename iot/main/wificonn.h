@@ -1,4 +1,4 @@
-#include <WiFi.h>
+#include <ESP8266WiFi.h>
 
 class WifiConn{
     public:

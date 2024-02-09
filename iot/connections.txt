@@ -4,7 +4,9 @@ Arduino TX (1) -> ESP RX (4)
 GND -> GND
 5V -> 3v3
 
-DHT11: -
+
+
+DHT11 & Arduino Config: -
 GND -> GND
 5V -> VCC
 D -> 2
