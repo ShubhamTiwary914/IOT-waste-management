@@ -14,9 +14,14 @@ senserRoute.post('/esp/link/', (req, res)=>{
 
 
 senserRoute.post('/esp/post/', (req, res)=>{
-    console.log("Data Received from esp32");
-    console.log(req.body);
-    //updatesHandler.updateRealTime(req.body, res)
+    try{
+        console.log(`Data Received from esp32 for device-id: ${req.body["device_id"]}`);
+        //console.log(req.body["data"]);
+        updatesHandler.updateRealTime(req.body, res)
+    }
+    catch(err){
+        console.log("Parsing error @/esp/post/")
+    }
 })
 
 

@@ -37,7 +37,10 @@ async function updateRealTime(reqBody, responder){
                         }
                     } 
                 }
-            ).then(res => responder.json({ updated: true }))
+            ).then(res => {
+                responder.json({ updated: true })
+                console.log("Successfully updated data received from sensors!");
+            })
             .catch(err =>{
                 responder.json({ updated: false })
                 console.log(`Error occured updating current stats: ${err}`);
