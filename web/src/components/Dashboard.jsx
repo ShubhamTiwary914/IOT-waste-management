@@ -159,16 +159,17 @@ function Dashboard() {
   }, []);
 
   // Fetch Device Data
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     // Fetch real-time sensor data every 5 seconds
-  //     Requests.fetchDevice_realTime((res) => {
-  //       setSensorData(res);
-  //     });
-  //   }, 1000);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      // Fetch real-time sensor data every 5 seconds
+      Requests.fetchDevice_realTime((res) => {
+        // setSensorData(res);
+        console.log(res);
+      });
+    }, 1000);
 
-  //   return () => clearInterval(interval); // Cleanup interval on unmount
-  // }, []);
+    return () => clearInterval(interval); // Cleanup interval on unmount
+  }, []);
 
   const getTemperature = () => {
     // Replace this with actual logic to get temperature data
