@@ -8,11 +8,11 @@ HTTPClient http;
 WiFiClient wifi;
 
 String device_id = "65bf8b8e65186267b817fe33";
-String host = "http://192.168.154.63:8080/esp/post";
+String host = "http://192.168.243.63:8080/esp/post";
 
 
-const char* ssid = "shubhamtw";        
-const char* password = "yugy6676"; 
+const char* ssid = "Let me die";        
+const char* password = "nightcore"; 
 
 
 const byte XON = 17; 
