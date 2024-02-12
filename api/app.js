@@ -25,8 +25,8 @@ const predictRouter = require('./routes/predict/predict')
 app.use(webRouter);     
 //path[POST]:  <host>/esp/
 app.use(sensorRouter);  
-//path[POST]:  <host>/predict/
-app.use(predictRouter);
+//path[POST]:  http://127.0.0.1:8023/temp/
+app.use(predictRouter)
 
 
 

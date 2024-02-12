@@ -101,14 +101,7 @@ export default class Requests{
     }
 
 
-    static async fetchDevice_currWeek(callback){
-
-    }
-
-
-    static async fetchDevice_currMonth(callback){
-
-    }
+    
 
 
 }

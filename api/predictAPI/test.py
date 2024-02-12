@@ -1,9 +1,11 @@
 import joblib
-import warnings
-warnings.filterwarnings("ignore")
+import pandas as pd
 
 
 
-model = joblib.load('./model/fsp_model.pkl');
-prediction = model.predict([[2, 23,5]]);
-print(prediction)
+
+
+pred = model.predict(testFd)[0]
+print(pred)
+
+

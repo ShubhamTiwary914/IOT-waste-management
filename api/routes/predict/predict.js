@@ -1,39 +1,16 @@
-const express = require('express')
-const predictionRouter = express.Router();
-const { InferenceSession, Tensor } = require('onnxruntime-node');
+const express  = require('express')
+const predictRouter = express.Router();
+const axios = require('axios')
+
+const predictPATH = 'http://127.0.0.1:8023/temp/'
 
 
-
-async function predictSpoilage(temp, responder){
-    // Create a new InferenceSession
-    const session = new InferenceSession();
-
-    // Load the ONNX model
-    await session.loadModel('./../../model/fsp_model.onnx');
-
-    // Prepare input data (replace inputData with your actual input data)
-    const inputData = new Float32Array([32.65]);
-
-    // Create an input Tensor
-    const inputTensor = new Tensor('float32', inputData, [1, inputData.length]);
-
-    // Run the model
-    const outputMap = await session.run([inputTensor]);
-
-    // Get the output tensor
-    const outputTensor = outputMap.values().next().value;
-
-    // Access the predictions
-    const predictions = outputTensor.data;
-    console.log(predictions);
-}
-
-
-predictionRouter.post('/predict/', (req,res)=>{
-    const temp = req.body.temp;
-    predictSpoilage(temp, res)
+predictRouter.post('/temp/', (req,res)=>{
+    axios.post(predictPATH, req.body).then(result=>{
+        res.json(result.data)
+    })
 })
 
 
 
-module.exports = predictionRouter;
+module.exports = predictRouter
