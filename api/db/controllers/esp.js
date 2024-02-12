@@ -1,5 +1,4 @@
 const currStatsModel = require('./../schema/CurrStats').currModel;
-const weekStatsModel = require('./../schema/WeekStat').WeekModel;
 
 
 function getCurrentTimeString(){
