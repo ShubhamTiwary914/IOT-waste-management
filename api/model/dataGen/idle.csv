@@ -1,0 +1,52 @@
+Food Item,Minimum Temp. (in degree C),Maximum Temp. (in degree C),Min. Time period (in days),Max. Time period (in days)
+Apple,-1.1,0,100,160
+Apricot,0,3,10,18
+Avocado,6,9,30,40
+Bael,6,9,10,15
+Banana,13,15,7,21
+Ber,1,3,17,35
+Date palm,10,15,14,21
+Grape,0,3,10,16
+Guava,18,23,10,14
+Jackfruit,10,15,15,30
+Jamun,8,10,14,21
+Karonda,4,6,7,12
+Kiwi,-0.6,0,100,150
+lemons,7.2,8.6,60,75
+Limes,8.3,10,25,50
+Litchi,5,7,14,24
+Mandarin orange,8,10,10,17
+Mango,12,15,10,16
+Papaya,5,7,12,16
+Peach,-0.3,-0.9,15,30
+Pear,-1,0,130,190
+Phalsa,7,7,7,12
+Pineapple,7,12,10,16
+Pomegranate,5,10,60,100
+Strawberry,30,32,7,18
+Aonla,20,33,10,25
+Ash gourd,10,13,30,35
+Beet root,0,3,21,35
+Bitter gourd,2,5,18,27
+Bottle gourd,3,5,7,14
+Brinjal,10,11,14,21
+Broccoli,4,4.4,7,10
+Cabbage,0,1.7,10,16
+Cauliflower,0,4,18,21
+Capsicum,7,10,10,14
+Carrot,0,4.5,100,180
+Cowpea,4,7,7,12
+Cucumber,10,12,10,14
+French bean,5,7,21,30
+Garlic,0,0.5,10,21
+Lettuce,1,4,18,28
+Okra,5,10,7,14
+Onion,10,15,45,90
+Palak,0,1,7,14
+Pumpkin,15,20,60,85
+spinach,0,5,7,14
+Tomato,10,15,24,35
+turnip,0,1,60,80
+Watermelon,2.2,4.4,12,21
+Potato,6,10,20,35
+Chili,0,1,21,35

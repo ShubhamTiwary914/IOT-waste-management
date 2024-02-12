@@ -1,0 +1,310 @@
+Food Item,Temp.(in degree C),Time period(in days)
+Apple,-1.0,116
+Apple,-0.1,108
+Apple,-0.7,115
+Apricot,2.9,13
+Apricot,2.0,16
+Apricot,0.0,10
+Avocado,6.2,32
+Avocado,8.8,39
+Avocado,8.2,30
+Bael,8.9,13
+Bael,6.2,11
+Bael,8.9,10
+Banana,13.2,19
+Banana,13.6,16
+Banana,14.2,13
+Ber,2.3,18
+Ber,1.6,20
+Ber,3.0,29
+Date palm,12.6,18
+Date palm,12.1,14
+Date palm,11.3,18
+Grape,2.6,11
+Grape,1.3,11
+Grape,2.2,15
+Guava,22.4,10
+Guava,20.1,12
+Guava,21.5,10
+Jackfruit,14.4,15
+Jackfruit,10.9,24
+Jackfruit,13.2,19
+Jamun,9.2,19
+Jamun,9.0,16
+Jamun,9.1,15
+Karonda,5.9,11
+Karonda,4.7,8
+Karonda,4.2,8
+Kiwi,-0.2,125
+Kiwi,-0.4,124
+Kiwi,-0.1,117
+lemons,7.2,64
+lemons,7.9,60
+lemons,7.7,65
+Limes,8.6,27
+Limes,9.5,36
+Limes,10.0,26
+Litchi,5.8,20
+Litchi,6.4,18
+Litchi,6.3,23
+Mandarin orange,9.8,15
+Mandarin orange,8.5,16
+Mandarin orange,9.2,17
+Mango,14.1,11
+Mango,12.9,16
+Mango,14.7,11
+Papaya,6.6,12
+Papaya,6.7,14
+Papaya,6.9,14
+Peach,-0.7,23
+Peach,-0.8,18
+Peach,-0.3,27
+Pear,-0.1,150
+Pear,-0.4,157
+Pear,-0.2,146
+Phalsa,7.0,11
+Phalsa,7.0,11
+Phalsa,7.0,11
+Pineapple,10.2,13
+Pineapple,8.2,15
+Pineapple,7.8,11
+Pomegranate,6.4,87
+Pomegranate,9.6,70
+Pomegranate,6.6,74
+Strawberry,31.6,15
+Strawberry,31.4,16
+Strawberry,31.9,17
+Aonla,30.5,15
+Aonla,28.0,11
+Aonla,31.2,20
+Ash gourd,11.1,35
+Ash gourd,10.9,34
+Ash gourd,11.7,35
+Beet root,1.7,31
+Beet root,1.6,26
+Beet root,1.7,29
+Bitter gourd,2.7,19
+Bitter gourd,4.1,24
+Bitter gourd,4.5,20
+Bottle gourd,4.0,8
+Bottle gourd,4.5,10
+Bottle gourd,3.7,14
+Brinjal,10.4,21
+Brinjal,10.6,14
+Brinjal,10.3,14
+Broccoli,4.4,10
+Broccoli,4.1,8
+Broccoli,4.0,7
+Cabbage,0.3,11
+Cabbage,0.3,15
+Cabbage,1.6,12
+Cauliflower,0.1,21
+Cauliflower,3.0,19
+Cauliflower,0.9,20
+Capsicum,9.4,13
+Capsicum,7.9,12
+Capsicum,7.7,13
+Carrot,3.6,144
+Carrot,1.9,125
+Carrot,4.1,158
+Cowpea,6.8,7
+Cowpea,4.3,9
+Cowpea,4.6,12
+Cucumber,11.3,14
+Cucumber,10.0,10
+Cucumber,11.9,14
+French bean,6.6,29
+French bean,6.7,21
+French bean,6.2,26
+Garlic,0.0,18
+Garlic,0.1,10
+Garlic,0.2,12
+Lettuce,2.8,19
+Lettuce,1.4,28
+Lettuce,2.9,25
+Okra,9.3,9
+Okra,7.1,7
+Okra,5.7,14
+Onion,13.1,78
+Onion,13.3,52
+Onion,10.7,77
+Palak,0.5,9
+Palak,0.4,11
+Palak,0.8,8
+Pumpkin,18.1,79
+Pumpkin,16.6,67
+Pumpkin,19.0,74
+spinach,2.7,13
+spinach,1.1,12
+spinach,3.4,12
+Tomato,13.3,30
+Tomato,10.2,31
+Tomato,12.6,24
+turnip,0.7,67
+turnip,0.7,63
+turnip,0.4,66
+Watermelon,3.4,20
+Watermelon,4.3,21
+Watermelon,3.2,19
+Potato,9.5,24
+Potato,6.8,35
+Potato,7.3,25
+Chili,0.3,31
+Chili,0.7,30
+Chili,0.6,30
+Apple,21.2,8
+Apple,24.2,17
+Apple,22.0,20
+Apricot,20.4,2
+Apricot,21.0,5
+Apricot,24.1,5
+Avocado,24.1,4
+Avocado,22.0,4
+Avocado,20.7,3
+Bael,22.2,7
+Bael,23.1,7
+Bael,24.3,6
+Banana,20.4,2
+Banana,21.4,6
+Banana,23.7,5
+Ber,20.6,2
+Ber,24.5,4
+Ber,20.1,4
+Date Palm,24.7,11
+Date Palm,22.6,9
+Date Palm,22.6,13
+Grape,21.0,14
+Grape,23.6,5
+Grape,21.5,6
+Guava,20.4,4
+Guava,24.5,3
+Guava,24.0,3
+Jackfruit,23.8,5
+Jackfruit,21.8,3
+Jackfruit,22.5,5
+Jamun,23.7,3
+Jamun,23.5,4
+Jamun,21.4,3
+Karonda,23.3,6
+Karonda,24.2,7
+Karonda,20.4,4
+Kiwi,23.2,11
+Kiwi,21.6,10
+Kiwi,22.3,10
+Lemons,23.9,21
+Lemons,20.9,24
+Lemons,24.4,30
+Limes,22.6,22
+Limes,21.6,26
+Limes,22.9,25
+Litchi,22.9,4
+Litchi,23.3,2
+Litchi,24.5,4
+Mandarin Orange,22.6,18
+Mandarin Orange,24.8,19
+Mandarin Orange,21.6,16
+Mango,24.6,3
+Mango,21.2,4
+Mango,22.3,3
+Papaya,22.5,3
+Papaya,21.1,4
+Papaya,25.0,4
+Peach,22.8,5
+Peach,23.1,3
+Peach,21.4,2
+Pear,22.3,4
+Pear,24.9,3
+Pear,20.7,5
+Phalsa,23.8,2
+Phalsa,21.9,3
+Phalsa,23.7,2
+Pineapple,24.5,5
+Pineapple,21.7,4
+Pineapple,22.7,5
+Pomegranate,22.6,11
+Pomegranate,22.0,7
+Pomegranate,21.0,8
+Strawberry,23.9,4
+Strawberry,23.6,3
+Strawberry,23.1,3
+Aonla,20.6,9
+Aonla,20.9,7
+Aonla,22.1,11
+Amaranthus,22.4,2
+Amaranthus,20.2,1
+Amaranthus,20.7,2
+Ash Gourd,25.0,8
+Ash Gourd,20.2,9
+Ash Gourd,22.1,9
+Beet Root,20.6,21
+Beet Root,20.3,19
+Beet Root,20.3,21
+Bitter Gourd,23.7,5
+Bitter Gourd,21.0,4
+Bitter Gourd,23.3,5
+Bottle Gourd,24.4,10
+Bottle Gourd,22.4,12
+Bottle Gourd,23.4,11
+Brinjal,24.3,3
+Brinjal,22.9,4
+Brinjal,22.4,3
+Broccoli,22.7,7
+Broccoli,20.2,9
+Broccoli,24.5,7
+Cabbage,23.5,7
+Cabbage,22.3,9
+Cabbage,21.3,10
+Cauliflower,24.4,7
+Cauliflower,24.3,10
+Cauliflower,21.7,10
+Capsicum,22.7,10
+Capsicum,21.3,10
+Capsicum,24.2,6
+Carrot,20.0,20
+Carrot,20.2,16
+Carrot,22.6,21
+Cowpea,24.3,1
+Cowpea,21.6,1
+Cowpea,22.0,2
+Cucumber,21.3,5
+Cucumber,24.0,7
+Cucumber,21.7,6
+French Bean,22.0,6
+French Bean,20.6,6
+French Bean,23.2,6
+Garlic,22.7,112
+Garlic,20.7,158
+Garlic,23.9,110
+Lettuce,21.8,3
+Lettuce,20.2,5
+Lettuce,22.2,7
+Okra,24.8,4
+Okra,21.4,3
+Okra,22.2,2
+Onion,24.9,141
+Onion,20.2,133
+Onion,22.0,163
+Palak,24.9,5
+Palak,21.9,4
+Palak,21.2,3
+Pumpkin,23.0,53
+Pumpkin,20.9,37
+Pumpkin,24.8,62
+Spinach,23.5,3
+Spinach,24.7,2
+Spinach,20.5,5
+Tomato,20.4,12
+Tomato,23.8,14
+Tomato,22.5,11
+Turnip,22.3,17
+Turnip,21.8,20
+Turnip,22.6,16
+Watermelon,20.9,11
+Watermelon,22.1,13
+Watermelon,21.2,13
+Potato,22.3,40
+Potato,22.6,41
+Potato,23.2,31
+Chili,21.8,12
+Chili,23.2,14
+Chili,24.8,7
