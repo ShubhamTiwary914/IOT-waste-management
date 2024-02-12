@@ -1,4 +1,5 @@
 const currStatsModel = require('./../schema/CurrStats').currModel;
+const hourStatsModel = require('./../schema/HourStats').hourStatsModel;
 
 
 function getCurrentTimeString(){
@@ -12,11 +13,11 @@ function getCurrentTimeString(){
 }
 
 
+
 async function updateRealTime(reqBody, responder){
     try{
         //create if doesnt exist -> then push data onto stats
         currStatsModel.find({ device_id: reqBody.device_id }).then(data=>{
-            
             //create device if not exists
             if(data.length <= 0){
                 new currStatsModel({
@@ -39,10 +40,11 @@ async function updateRealTime(reqBody, responder){
             ).then(res => {
                 responder.json({ updated: true })
                 console.log("Successfully updated data received from sensors!");
+                updateHourlyData(reqBody.device_id, reqBody.data, currentTime)
             })
             .catch(err =>{
-                responder.json({ updated: false })
-                console.log(`Error occured updating current stats: ${err}`);
+                responder.json({ updated: true })
+                console.log("Unsuccessful updating data received from sensors!");
             })
         })
     }catch(err){
@@ -51,6 +53,58 @@ async function updateRealTime(reqBody, responder){
 } 
 
 
+
+
+async function updateHourlyData(device_id, data, currTime){
+    const hour =  parseInt(currTime.split(":")[0])
+    const currentDate = new Date()
+
+    try{
+        //check if device_id exists -> else not: make 
+        hourStatsModel.find({ device_id: device_id }).then(data=>{
+            //create device if not exists[hour stats]
+            if(data.length <= 0){
+                new hourStatsModel({
+                    device_id: device_id
+                }).save()
+            }       
+        })
+
+        //check if the hour is updated in db under the device' hour stats
+        hourStatsModel.find({
+            device_id: device_id,
+            "stats.date": {
+                $gte: new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), 0, 0, 0),
+                $lt: new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + 1, 0, 0, 0)
+            },
+            "stats.hour": hour
+        }).then(hourData=>{
+
+            //*if empty for the current hour -> then update
+            if(hourData.length <= 0){
+                hourStatsModel.findOneAndUpdate(
+                    { device_id: device_id }, 
+                    { 
+                        $push: {
+                            stats: {
+                                hour: hour,
+                                data: data
+                            }
+                        } 
+                    }
+                ).then(res => {
+                    console.log("Successfully updated Hourly data!");
+                })
+                .catch(err =>{
+                    console.log("Unable to update hourly data!");
+                })
+            }
+        })
+    }
+    catch(err){
+
+    }
+}
 
 
 

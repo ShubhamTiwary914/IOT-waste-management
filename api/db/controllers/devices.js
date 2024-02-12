@@ -1,6 +1,7 @@
 const UserModel = require('./../schema/Users').UserModel;
 const DeviceModel = require('./../schema/Device').DeviceModel;
 const currStatsModel = require('./../schema/CurrStats').currModel;
+const hourStatsModel = require('./../schema/HourStats').hourStatsModel;
 
 
 //add device id to user's devices id array
@@ -81,15 +82,12 @@ async function fetchDevice_curr(reqBody, responder){
         .then(res =>{
             responder.json(res);
         })
-
 }
 
-//weekly and monthly data
-async function fetchDevice_week(deviceID, responder){
-
-}
-async function fetchDevice_month(deviceID, responder){
-
+async function fetchDevice_hourly(reqBody, responder){
+    hourStatsModel.find({ device_id: reqBody.device_id }).then(res=>{
+        responder.json(res)
+    })
 }
 
 
@@ -99,6 +97,5 @@ module.exports = {
     setItemNames,
     getItemNames,
     fetchDevice_curr,
-    fetchDevice_week,
-    fetchDevice_month
+    fetchDevice_hourly
 }

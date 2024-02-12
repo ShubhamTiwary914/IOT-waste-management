@@ -43,12 +43,8 @@ webAppRouter.post('/device/fetch/curr/', (req, res)=>{
     deviceCollection.fetchDevice_curr(req.body, res)
 })
 
-webAppRouter.post('/device/fetch/week/', (req, res)=>{
-    deviceCollection.fetchDevice_week(req.body, res)
-})
-
-webAppRouter.post('/device/fetch/month/', (req, res)=>{
-    deviceCollection.fetchDevice_month(req.body, res)
+webAppRouter.post('/device/fetch/hour/', (req,res)=>{
+    deviceCollection.fetchDevice_hourly(req.body, res)
 })
 
 

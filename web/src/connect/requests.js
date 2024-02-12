@@ -40,8 +40,7 @@ const hostPATH = 'http://localhost:8080'
     !NOTE:  fetcing devices need no parameters -> as devices' data are already stored when user logins
     i.e: 
     *fetchDevices' real time method data format:  NULL
-    *fetchDevices' curr week  method data format:  NULL
-    *fetchDevices' curr month method data format:  NULL
+    *fetchDevices' hourly  method data format:  NULL
 */ 
 
 
@@ -56,6 +55,7 @@ export default class Requests{
         })
     }
 
+    //*User Controls -> Register and Login
     static async createUser(data, callback){
         Requests.httpPOST('/users/create/', data, callback);
     }
@@ -67,11 +67,8 @@ export default class Requests{
         });
     }
 
-    static async linkDevice(data, callback){
-        Requests.httpPOST('/device/create/', data, callback);
-    }
 
-
+    //*Controlling Items in Containers
     static async getItems(callback){
         const data = {
             device_id: sessionStorage.getItem("device_id")
@@ -90,7 +87,11 @@ export default class Requests{
 
 
 
-    //device data for the day -> every 10 sec interval [limited by 1440x6 [minutes in a day]]
+    //*Creating & Fetching devices data
+    static async linkDevice(data, callback){
+        Requests.httpPOST('/device/create/', data, callback);
+    }
+
     static async fetchDevice_realTime(callback){
         const device_id = sessionStorage.getItem('device_id');
         Requests.httpPOST('/device/fetch/curr/', {
@@ -100,8 +101,14 @@ export default class Requests{
         });
     }
 
-
-    
+    static async fetchDevice_hourly(callback){
+        const device_id = sessionStorage.getItem('device_id');
+        Requests.httpPOST('/device/fetch/hour/', {
+            device_id: device_id
+        }, res=>{
+            callback(res.data[0].stats)
+        });
+    }
 
 
 }

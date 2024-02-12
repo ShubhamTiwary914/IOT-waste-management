@@ -37,6 +37,13 @@ function Random() {
     })
     */
 
+    //fetch hourly data\
+    /*
+    Requests.fetchDevice_hourly(res=>{
+      console.log(res)
+    })
+    */
+
   }, [])
   
 
