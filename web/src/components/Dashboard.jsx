@@ -113,52 +113,34 @@ function Dashboard() {
     humidity: "updating", //60,
     gasLevels1: "updating",
     gasLevels2: "updating",
-    gasLevels3: "updating",
   });
 
-  // Generates Random Data for Sensors
-  useEffect(() => {
-    // Simulate real-time updates every 5 seconds
-    const interval = setInterval(() => {
-      // Replace the following lines with actual data fetching from your sensors
-
-      // For temperature, it's common for all containers
-      const newTemperature = getTemperature();
-      const newHumidity = getHumidity();
-
-      // For gas levels, we set data for each container individually
-      const newO2Level1 = getGasLevel1();
-      const newCO2Level1 = getGasLevel1();
-
-      const newO2Level2 = getGasLevel2();
-      const newCO2Level2 = getGasLevel2();
-
-      const newO2Level3 = getGasLevel3();
-      const newCO2Level3 = getGasLevel3();
-
-      setSensorData((prevData) => ({
-        ...prevData,
-        temperature: newTemperature,
-        humidity: newHumidity,
-        gasLevels1: {
-          O2: newO2Level1,
-          CO2: newCO2Level1,
-        },
-        gasLevels2: {
-          O2: newO2Level2,
-          CO2: newCO2Level2,
-        },
-        gasLevels3: {
-          O2: newO2Level3,
-          CO2: newCO2Level3,
-        },
-      }));
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
-
   // Fetch Device Data
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     // Fetch real-time sensor data every 5 seconds
+  //     Requests.fetchDevice_realTime((res) => {
+  //       // Extract temperature and humidity data
+  //       const { temp, humidity } = res;
+
+  //       // Extract gas levels data for each container
+  //       const gasLevels = res.containers.map((container) => ({
+  //         O2: container.o2,
+  //         CO2: container.co2,
+  //       }));
+
+  //       // Update the sensorData state
+  //       setSensorData({
+  //         temperature: temp,
+  //         humidity: humidity,
+  //         gasLevels: gasLevels,
+  //       });
+  //     });
+  //   }, 5000);
+
+  //   return () => clearInterval(interval); // Cleanup interval on unmount
+  // }, []);
+
   useEffect(() => {
     const interval = setInterval(() => {
       // Fetch real-time sensor data every 5 seconds
@@ -166,10 +148,69 @@ function Dashboard() {
         // setSensorData(res);
         console.log(res);
       });
-    }, 1000);
+    }, 5000);
 
     return () => clearInterval(interval); // Cleanup interval on unmount
   }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      // Fetch real-time sensor data every 5 seconds
+      Requests.fetchDevice_realTime((stats) => {
+        if (stats && stats.length > 0) {
+          const { temp, humidity, containers } = stats[0].data; // Extract temp, humidity, and containers from the first item in stats array
+          setSensorData({ temp, humidity, containers });
+        } else {
+          // If stats is empty or null, set temp, humidity, and containers to null
+          setSensorData({ temp: null, humidity: null, containers: null });
+        }
+      });
+    }, 5000);
+
+    return () => clearInterval(interval); // Cleanup interval on unmount
+  }, []);
+
+  // Generates Random Data for Sensors
+  // useEffect(() => {
+  //   // Simulate real-time updates every 5 seconds
+  //   const interval = setInterval(() => {
+  //     // Replace the following lines with actual data fetching from your sensors
+
+  //     // For temperature, it's common for all containers
+  //     const newTemperature = getTemperature();
+  //     const newHumidity = getHumidity();
+
+  //     // For gas levels, we set data for each container individually
+  //     const newO2Level1 = getGasLevel1();
+  //     const newCO2Level1 = getGasLevel1();
+
+  //     const newO2Level2 = getGasLevel2();
+  //     const newCO2Level2 = getGasLevel2();
+
+  //     const newO2Level3 = getGasLevel3();
+  //     const newCO2Level3 = getGasLevel3();
+
+  //     setSensorData((prevData) => ({
+  //       ...prevData,
+  //       temperature: newTemperature,
+  //       humidity: newHumidity,
+  //       gasLevels1: {
+  //         O2: newO2Level1,
+  //         CO2: newCO2Level1,
+  //       },
+  //       gasLevels2: {
+  //         O2: newO2Level2,
+  //         CO2: newCO2Level2,
+  //       },
+  //       gasLevels3: {
+  //         O2: newO2Level3,
+  //         CO2: newCO2Level3,
+  //       },
+  //     }));
+  //   }, 1000);
+
+  //   return () => clearInterval(interval);
+  // }, []);
 
   const getTemperature = () => {
     // Replace this with actual logic to get temperature data
@@ -420,29 +461,46 @@ function Dashboard() {
           <Icon path={mdiThermometer} size={1} />
           Sensor Data
         </h3>
-        <p>{`Temperature: ${sensorData.temperature} °C`}</p>
-        <p>{`Humidity: ${sensorData.humidity}`}</p>
+        <p>{`Temperature: ${
+          sensorData.temp ? sensorData.temp + " °C" : "N/A"
+        }`}</p>
+        <p>{`Humidity: ${
+          sensorData.humidity ? sensorData.humidity : "N/A"
+        }`}</p>
 
         {/* Container 1 */}
-        <div className={styles.sensorData}>
-          <h4>Gas Levels Container 1</h4>
-          <p>{`Gas Levels (O2): ${sensorData.gasLevels1.O2} ppm`}</p>
-          <p>{`Gas Levels (CO2): ${sensorData.gasLevels1.CO2} ppm`}</p>
-        </div>
+        {sensorData.containers && sensorData.containers[0] && (
+          <div className={styles.sensorData}>
+            <h4>Gas Levels Container 1</h4>
+            <p>{`Gas Levels (O2): ${
+              sensorData.containers[0].o2
+                ? sensorData.containers[0].o2 + " ppm"
+                : "N/A"
+            }`}</p>
+            <p>{`Gas Levels (CO2): ${
+              sensorData.containers[0].co2
+                ? sensorData.containers[0].co2 + " ppm"
+                : "N/A"
+            }`}</p>
+          </div>
+        )}
 
         {/* Container 2 */}
-        <div className={styles.sensorData}>
-          <h4>Gas Levels Container 2</h4>
-          <p>{`Gas Levels (O2): ${sensorData.gasLevels2.O2} ppm`}</p>
-          <p>{`Gas Levels (CO2): ${sensorData.gasLevels2.CO2} ppm`}</p>
-        </div>
-
-        {/* Container 3 */}
-        <div className={styles.sensorData}>
-          <h4>Gas Levels Container 3</h4>
-          <p>{`Gas Levels (O2): ${sensorData.gasLevels3.O2} ppm`}</p>
-          <p>{`Gas Levels (CO2): ${sensorData.gasLevels3.CO2} ppm`}</p>
-        </div>
+        {sensorData.containers && sensorData.containers[1] && (
+          <div className={styles.sensorData}>
+            <h4>Gas Levels Container 2</h4>
+            <p>{`Gas Levels (O2): ${
+              sensorData.containers[1].o2
+                ? sensorData.containers[1].o2 + " ppm"
+                : "N/A"
+            }`}</p>
+            <p>{`Gas Levels (CO2): ${
+              sensorData.containers[1].co2
+                ? sensorData.containers[1].co2 + " ppm"
+                : "N/A"
+            }`}</p>
+          </div>
+        )}
       </div>
     </div>
   );

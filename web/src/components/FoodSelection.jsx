@@ -7,6 +7,7 @@ function FoodSelection() {
   const [selectedFoodIndex, setSelectedFoodIndex] = useState(null);
   const [isFoodItemModalOpen, setFoodItemModalOpen] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
+  const [numberOfContainers, setNumberOfContainers] = useState(1);
 
   const foodItems = [
     { id: 1, name: "Apple" },
@@ -21,19 +22,33 @@ function FoodSelection() {
       containerNumber: 1,
       containerText: "Container 1",
     },
-    {
-      id: 2,
-      imageSrc: conImg,
-      containerNumber: 2,
-      containerText: "Container 2",
-    },
-    {
-      id: 3,
-      imageSrc: conImg,
-      containerNumber: 3,
-      containerText: "Container 3",
-    },
+    // {
+    //   id: 2,
+    //   imageSrc: conImg,
+    //   containerNumber: 2,
+    //   containerText: "Container 2",
+    // },
+    // {
+    //   id: 3,
+    //   imageSrc: conImg,
+    //   containerNumber: 3,
+    //   containerText: "Container 3",
+    // },
   ]);
+
+  const handleNumberOfContainersChange = (e) => {
+    const number = parseInt(e.target.value);
+    setNumberOfContainers(number);
+
+    // Generate container data based on the selected number of containers
+    const newContainers = Array.from({ length: number }, (_, index) => ({
+      id: index + 1,
+      imageSrc: conImg,
+      containerNumber: index + 1,
+      containerText: `Container ${index + 1}`,
+    }));
+    setContainerData(newContainers);
+  };
 
   const handleContainerClick = (containerID) => {
     setSelectedContainer(containerID);
@@ -86,6 +101,22 @@ function FoodSelection() {
   return (
     <div className={styles.foodSelectionContainer}>
       <h2 className={styles.foodSelectionTitle}>Food Container Selection</h2>
+
+      {/* Select Number of Containers */}
+      <div className={styles.numberOfContainers}>
+        <label htmlFor="numberOfContainers">Select Number of Containers:</label>
+        <select
+          id="numberOfContainers"
+          value={numberOfContainers}
+          onChange={handleNumberOfContainersChange}
+        >
+          {[1, 2, 3, 4, 5].map((number) => (
+            <option key={number} value={number}>
+              {number}
+            </option>
+          ))}
+        </select>
+      </div>
 
       {/* Container List */}
       <div className={styles.containerList}>

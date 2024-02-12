@@ -293,6 +293,29 @@ h3 {
   margin-top: 20px;
 }
 
+.numberOfContainers {
+  margin-bottom: 20px;
+}
+
+.numberOfContainers label {
+  font-size: 16px;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.numberOfContainers select {
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+}
+
+.numberOfContainers select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
 .containerList {
   display: flex;
   align-items: center;
