@@ -111,6 +111,15 @@ export default class Requests{
     }
 
 
+    static async fetch_ItemsQueue(callback){
+        const device_id = sessionStorage.getItem('device_id');
+        Requests.httpPOST('/device/fetch/queue/', {
+            device_id: device_id
+        }, res=>{
+            callback(res.data[0])
+        });
+    }
+
 }
 
 

@@ -1,5 +1,7 @@
 const currStatsModel = require('./../schema/CurrStats').currModel;
 const hourStatsModel = require('./../schema/HourStats').hourStatsModel;
+const itemControls = require('./itemControls')
+
 
 
 function getCurrentTimeString(){
@@ -56,7 +58,8 @@ async function updateRealTime(reqBody, responder){
 
 
 async function updateHourlyData(device_id, data, currTime){
-    const hour =  parseInt(currTime.split(":")[0])
+    //const hour =  parseInt(currTime.split(":")[0])
+    let hour = 8
     const currentDate = new Date()
 
     try{
@@ -80,7 +83,10 @@ async function updateHourlyData(device_id, data, currTime){
             "stats.hour": hour
         }).then(hourData=>{
 
-            //*if empty for the current hour -> then update
+            //itemControls.updateItemQueues_hourly(device_id);
+            
+            //if empty for the current hour -> then update
+            
             if(hourData.length <= 0){
                 hourStatsModel.findOneAndUpdate(
                     { device_id: device_id }, 
@@ -94,6 +100,7 @@ async function updateHourlyData(device_id, data, currTime){
                     }
                 ).then(res => {
                     console.log("Successfully updated Hourly data!");
+                    itemControls.updateItemQueues_hourly(device_id, currTime);
                 })
                 .catch(err =>{
                     console.log("Unable to update hourly data!");
@@ -102,7 +109,7 @@ async function updateHourlyData(device_id, data, currTime){
         })
     }
     catch(err){
-
+        console.log(`Unable to update hourly data!  ${err}`);
     }
 }
 

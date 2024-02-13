@@ -37,10 +37,17 @@ function Random() {
     })
     */
 
-    //fetch hourly data\
+    //fetch hourly data
     /*
     Requests.fetchDevice_hourly(res=>{
       console.log(res)
+    })
+    */
+
+    //fetch queue items list
+    /*
+    Requests.fetch_ItemsQueue((res)=>{
+      console.log(res);
     })
     */
 

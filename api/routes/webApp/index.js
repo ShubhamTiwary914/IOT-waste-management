@@ -37,7 +37,6 @@ webAppRouter.post('/device/getitems/', (req, res)=>{
 
 
 
-
 //fetch device data and return to user
 webAppRouter.post('/device/fetch/curr/', (req, res)=>{
     deviceCollection.fetchDevice_curr(req.body, res)
@@ -45,6 +44,10 @@ webAppRouter.post('/device/fetch/curr/', (req, res)=>{
 
 webAppRouter.post('/device/fetch/hour/', (req,res)=>{
     deviceCollection.fetchDevice_hourly(req.body, res)
+})
+
+webAppRouter.post('/device/fetch/queue/', (req,res)=>{
+    deviceCollection.fetch_queueItems(req.body, res)
 })
 
 

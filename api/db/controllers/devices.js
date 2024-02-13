@@ -2,6 +2,8 @@ const UserModel = require('./../schema/Users').UserModel;
 const DeviceModel = require('./../schema/Device').DeviceModel;
 const currStatsModel = require('./../schema/CurrStats').currModel;
 const hourStatsModel = require('./../schema/HourStats').hourStatsModel;
+const itemQueueModel = require('./../schema/ItemQueue').itemQueue_model
+
 
 
 //add device id to user's devices id array
@@ -91,11 +93,19 @@ async function fetchDevice_hourly(reqBody, responder){
 }
 
 
+async function fetch_queueItems(reqBody, responder){
+    itemQueueModel.find({ device_id: reqBody.device_id }).then(res=>{
+        responder.json(res)
+    })
+}
+
+
 
 module.exports = {
     registerDevice,
     setItemNames,
     getItemNames,
     fetchDevice_curr,
-    fetchDevice_hourly
+    fetchDevice_hourly,
+    fetch_queueItems
 }
