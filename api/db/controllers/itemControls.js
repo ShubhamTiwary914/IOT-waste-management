@@ -22,7 +22,7 @@ async function createItemQueue(device_id){
 
 
 async function updateItemQueues_hourly(device_id, currentTime) {
-    createItemQueue(device_id);
+    await createItemQueue(device_id);
 
     try {
         let queue = await itemQueueModel.find({ device_id: device_id });

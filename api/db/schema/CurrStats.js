@@ -12,6 +12,7 @@ const currStatsSchema = new mongoose.Schema({
             time: String,
             data: {
                 temp: Number,
+                humidity: Number,
                 containers: [
                     {
                         o2: Number,

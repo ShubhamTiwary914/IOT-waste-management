@@ -12,6 +12,7 @@ const hourStatsSchema = new mongoose.Schema({
             hour: Number,  //0-24 
             data: {
                 temp: Number,
+                humidity: Number,
                 containers: [
                     {
                         o2: Number,
