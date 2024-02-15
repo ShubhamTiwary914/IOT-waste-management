@@ -58,8 +58,7 @@ async function updateRealTime(reqBody, responder){
 
 
 async function updateHourlyData(device_id, data, currTime){
-    //const hour =  parseInt(currTime.split(":")[0])
-    let hour = 8
+    const hour =  parseInt(currTime.split(":")[0])
     const currentDate = new Date()
 
     try{

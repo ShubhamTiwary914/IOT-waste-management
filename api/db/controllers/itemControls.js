@@ -4,7 +4,14 @@ const DeviceModel = require('./../schema/Device').DeviceModel
 const axios = require('axios')
 
 
-const treshold = 10
+const thresholds = {
+    'Apple': 30,
+    'Guava': 30,
+    'Potato': 10,
+    'Cabbage': 200
+}
+
+
 const predictPATH = 'http://127.0.0.1:8080/temp/'
 
 async function createItemQueue(device_id){
@@ -55,7 +62,7 @@ async function updateItemQueues_hourly(device_id, currentTime) {
                     let diff = hourData.containers[i].weight - summ;
                     //console.log(diff)
                     // if  diff >= treshold[increased] -> add difference of item to queue (back)
-                    if(diff >= treshold){
+                    if(diff >= thresholds[itemNames[i]]){
                         let resp = await axios.post(predictPATH, { item: itemNames[i], temp: hourData.temp });
                         queueContainers[i].push({
                             itemName: itemNames[i],
@@ -65,7 +72,7 @@ async function updateItemQueues_hourly(device_id, currentTime) {
                         })
                     }
                     // if diff < -treshold[decreased] -> remove difference from front
-                    if(diff <= -treshold){
+                    if(diff <= -thresholds[itemNames[i]]){
                         diff = - diff
                         let k = 0;
                         while(diff > 0){
