@@ -38,9 +38,9 @@ function App() {
                 <li>
                   <Nav.Link href="/">Dashboard</Nav.Link>
                 </li>
-                {/* <li>
+                <li>
                   <Nav.Link href="/community+exchange">Community</Nav.Link>
-                </li> */}
+                </li>
                 <li>
                   <Nav.Link href="/profile">Profile</Nav.Link>
                 </li>

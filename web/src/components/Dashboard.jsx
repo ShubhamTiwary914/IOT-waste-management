@@ -17,6 +17,22 @@ import {
 function Dashboard() {
   const [selectedMatch, setSelectedMatch] = useState(null);
   const [requestMessage, setRequestMessage] = useState("");
+  const [itemsQueue, setItemsQueue] = useState([]);
+  const [hourlyData, setHourlyData] = useState([]);
+
+  useEffect(() => {
+    Requests.fetch_ItemsQueue((res) => {
+      console.log(res);
+      setItemsQueue(res);
+    });
+  }, []);
+
+  useEffect(() => {
+    Requests.fetchDevice_hourly((res) => {
+      console.log(res);
+      setHourlyData(res);
+    });
+  }, []);
 
   const [userMetrics, setUserMetrics] = useState({
     totalMatches: 30,
