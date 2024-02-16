@@ -13,9 +13,6 @@ function Random() {
     })
 
     //fetch device data once
-    Requests.fetchDevice_realTime((res)=>{
-      console.log(res);
-    })
 
     //get device item names
     /*

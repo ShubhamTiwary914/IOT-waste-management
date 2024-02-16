@@ -12,6 +12,7 @@ import logo from "./assets/akatsuki.png";
 
 import Dashboard from "./components/Dashboard";
 import Profile from "./components/Profile";
+import Exchange from "./components/Exchange";
 import Random from "./components/Random";
 
 function App() {
@@ -37,6 +38,9 @@ function App() {
                 <li>
                   <Nav.Link href="/">Dashboard</Nav.Link>
                 </li>
+                {/* <li>
+                  <Nav.Link href="/community+exchange">Community</Nav.Link>
+                </li> */}
                 <li>
                   <Nav.Link href="/profile">Profile</Nav.Link>
                 </li>
@@ -47,6 +51,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/community+exchange" element={<Exchange />} />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </Router>

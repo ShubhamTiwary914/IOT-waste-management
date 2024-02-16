@@ -111,131 +111,33 @@ function Dashboard() {
   const [sensorData, setSensorData] = useState({
     temperature: "updating", //25,
     humidity: "updating", //60,
-    gasLevels1: "updating",
-    gasLevels2: "updating",
+    o2_1: "updating",
+    co2_1: "updating",
+    o2_2: "updating",
+    co2_2: "updating",
   });
-
-  // Fetch Device Data
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     // Fetch real-time sensor data every 5 seconds
-  //     Requests.fetchDevice_realTime((res) => {
-  //       // Extract temperature and humidity data
-  //       const { temp, humidity } = res;
-
-  //       // Extract gas levels data for each container
-  //       const gasLevels = res.containers.map((container) => ({
-  //         O2: container.o2,
-  //         CO2: container.co2,
-  //       }));
-
-  //       // Update the sensorData state
-  //       setSensorData({
-  //         temperature: temp,
-  //         humidity: humidity,
-  //         gasLevels: gasLevels,
-  //       });
-  //     });
-  //   }, 5000);
-
-  //   return () => clearInterval(interval); // Cleanup interval on unmount
-  // }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
       // Fetch real-time sensor data every 5 seconds
       Requests.fetchDevice_realTime((res) => {
-        // setSensorData(res);
         console.log(res);
+        let length = res.length;
+        setSensorData({
+          temperature: res[length - 1].data.temp,
+          humidity: res[length - 1].data.humidity,
+          o2_1: res[length - 1].data.containers[0].o2,
+          co2_1: res[length - 1].data.containers[0].co2,
+          weight1: res[length - 1].data.containers[0].weight,
+          o2_2: res[length - 1].data.containers[1].o2,
+          co2_2: res[length - 1].data.containers[1].co2,
+          weight2: res[length - 1].data.containers[1].weight,
+        });
       });
     }, 5000);
 
     return () => clearInterval(interval); // Cleanup interval on unmount
   }, []);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      // Fetch real-time sensor data every 5 seconds
-      Requests.fetchDevice_realTime((stats) => {
-        if (stats && stats.length > 0) {
-          const { temp, humidity, containers } = stats[0].data; // Extract temp, humidity, and containers from the first item in stats array
-          setSensorData({ temp, humidity, containers });
-        } else {
-          // If stats is empty or null, set temp, humidity, and containers to null
-          setSensorData({ temp: null, humidity: null, containers: null });
-        }
-      });
-    }, 5000);
-
-    return () => clearInterval(interval); // Cleanup interval on unmount
-  }, []);
-
-  // Generates Random Data for Sensors
-  // useEffect(() => {
-  //   // Simulate real-time updates every 5 seconds
-  //   const interval = setInterval(() => {
-  //     // Replace the following lines with actual data fetching from your sensors
-
-  //     // For temperature, it's common for all containers
-  //     const newTemperature = getTemperature();
-  //     const newHumidity = getHumidity();
-
-  //     // For gas levels, we set data for each container individually
-  //     const newO2Level1 = getGasLevel1();
-  //     const newCO2Level1 = getGasLevel1();
-
-  //     const newO2Level2 = getGasLevel2();
-  //     const newCO2Level2 = getGasLevel2();
-
-  //     const newO2Level3 = getGasLevel3();
-  //     const newCO2Level3 = getGasLevel3();
-
-  //     setSensorData((prevData) => ({
-  //       ...prevData,
-  //       temperature: newTemperature,
-  //       humidity: newHumidity,
-  //       gasLevels1: {
-  //         O2: newO2Level1,
-  //         CO2: newCO2Level1,
-  //       },
-  //       gasLevels2: {
-  //         O2: newO2Level2,
-  //         CO2: newCO2Level2,
-  //       },
-  //       gasLevels3: {
-  //         O2: newO2Level3,
-  //         CO2: newCO2Level3,
-  //       },
-  //     }));
-  //   }, 1000);
-
-  //   return () => clearInterval(interval);
-  // }, []);
-
-  const getTemperature = () => {
-    // Replace this with actual logic to get temperature data
-    return Math.floor(Math.random() * 30) + 20;
-  };
-
-  const getHumidity = () => {
-    // Replace this with actual logic to get temperature data
-    return Math.floor(Math.random() * 30) + 20;
-  };
-
-  const getGasLevel1 = () => {
-    // Generate a random gas level between 400 and 1000
-    return Math.floor(Math.random() * (1000 - 400 + 1)) + 400;
-  };
-
-  const getGasLevel2 = () => {
-    // Generate a random gas level between 400 and 1000
-    return Math.floor(Math.random() * (1000 - 400 + 1)) + 400;
-  };
-
-  const getGasLevel3 = () => {
-    // Generate a random gas level between 400 and 1000
-    return Math.floor(Math.random() * (1000 - 400 + 1)) + 400;
-  };
 
   const availableMatches = [
     { id: 1, business: "Local Market", quantity: 20, foodType: "Fruits" },
@@ -304,13 +206,13 @@ function Dashboard() {
     <div className={styles.dashboardContainer}>
       <h2 className={styles.dashboard_text}>User Dashboard</h2>
 
-      <div className={styles.sectionContainer}>
+      {/* <div className={styles.sectionContainer}>
         <p>{`Total matches: ${userMetrics.totalMatches}`}</p>
         <p>{`Food shared: ${userMetrics.foodShared}`}</p>
-      </div>
+      </div> */}
 
       {/* Predictive Data Section */}
-      <div className={styles.sectionContainer}>
+      {/* <div className={styles.sectionContainer}>
         <h3>
           <Icon path={mdiChartLine} size={1} />
           Predictive Data
@@ -320,10 +222,10 @@ function Dashboard() {
             <p key={data.id}>{`${data.category}: ${data.value}`}</p>
           ))}
         </div>
-      </div>
+      </div> */}
 
       {/* Recent Success Stories Section */}
-      <div className={styles.sectionContainer}>
+      {/* <div className={styles.sectionContainer}>
         <h3>
           <Icon path={mdiFoodApple} size={1} />
           Recent Success Stories
@@ -335,10 +237,10 @@ function Dashboard() {
             >{`${match.business} shared ${match.quantity} ${match.foodType}`}</li>
           ))}
         </ul>
-      </div>
+      </div> */}
 
       {/* Testimonials Section */}
-      <div className={styles.sectionContainer}>
+      {/* <div className={styles.sectionContainer}>
         <h3>
           <Icon path={mdiCommentQuote} size={1} />
           What People Are Saying
@@ -351,10 +253,80 @@ function Dashboard() {
             </div>
           ))}
         </div>
+      </div> */}
+
+      {/* Inventory Section */}
+      <div className={styles.sectionContainer}>
+        <h3 className={styles.sectionTitle}>
+          <Icon path={mdiPackage} size={1} />
+          Inventory
+        </h3>
+
+        {/* Real-time Quantity */}
+        <div className={styles.inventorySection}>
+          <h4 className={styles.inventoryTitle}>
+            <Icon path={mdiPackage} size={0.8} /> Real-time Quantity
+          </h4>
+          <ul className={styles.inventoryList}>
+            {inventory.map((item) => (
+              <li key={item.id} className={styles.inventoryItem}>
+                <span className={styles.foodType}>{item.foodType}</span>:{" "}
+                <span className={styles.quantity}>{item.quantity}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Food Changes Section */}
+        <div className={styles.foodChanges}>
+          <h4 className={styles.inventoryTitle}>
+            <Icon path={mdiPackage} size={0.8} /> Food Changes
+          </h4>
+          <ul className={styles.foodChangesList}>
+            {foodChanges.map((change) => (
+              <li key={change.id} className={styles.foodChangeItem}>
+                <p className={styles.foodChange}>
+                  <span className={styles.foodType}>{change.foodType}</span>{" "}
+                  <span className={styles.change}>{change.change}</span>
+                  <span className={styles.arrow}>➔</span>
+                  <span className={styles.timestamp}>{change.timestamp}</span>
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      {/* Sensor Data Section */}
+      <div className={styles.sectionContainer}>
+        <h3>
+          <Icon path={mdiThermometer} size={1} />
+          Sensor Data
+        </h3>
+        <p>{`Temperature: ${
+          sensorData.temperature ? sensorData.temperature + " °C" : "N/A"
+        }`}</p>
+        <p>{`Humidity: ${
+          sensorData.humidity ? sensorData.humidity : "N/A"
+        }`}</p>
+
+        {/* Container 1 */}
+        <div className={styles.sensorData}>
+          <h4>Gas Levels Container 1</h4>
+          <p>{`Gas Levels (O2): ${sensorData.o2_1 + " ppm"}`}</p>
+          <p>{`Gas Levels (CO2): ${sensorData.co2_1 + " ppm"}`}</p>
+        </div>
+
+        {/* Container 2 */}
+        <div className={styles.sensorData}>
+          <h4>Gas Levels Container 2</h4>
+          <p>{`Gas Levels (O2): ${sensorData.o2_1 + " ppm"}`}</p>
+          <p>{`Gas Levels (CO2): ${sensorData.co2_1 + " ppm"}`}</p>
+        </div>
       </div>
 
       {/* Community Exchange Section */}
-      <div className={styles.sectionContainer}>
+      {/* <div className={styles.sectionContainer}>
         <h3>
           <Icon path={mdiAccountMultiple} size={1} />
           Community Exchange
@@ -392,7 +364,7 @@ function Dashboard() {
             </button>
           </div>
         )}
-      </div>
+      </div> */}
 
       {/* Impact Insights Section */}
       <div className={styles.sectionContainer}>
@@ -414,93 +386,6 @@ function Dashboard() {
             <p key={insight.id}>{`${insight.metric}: ${insight.value}`}</p>
           ))}
         </div> */}
-      </div>
-
-      {/* Inventory Section */}
-      <div className={styles.sectionContainer}>
-        <h3 className={styles.sectionTitle}>
-          <Icon path={mdiPackage} size={1} />
-          Inventory
-        </h3>
-
-        {/* Real-time Quantity */}
-        <div className={styles.inventorySection}>
-          <h4 className={styles.inventoryTitle}>
-            <Icon path={mdiPackage} size={0.8} /> Real-time Quantity
-          </h4>
-          <ul className={styles.inventoryList}>
-            {inventory.map((item) => (
-              <li key={item.id} className={styles.inventoryItem}>
-                <span className={styles.foodType}>{item.foodType}</span>:{" "}
-                <span className={styles.quantity}>{item.quantity}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Food Changes Section */}
-        <div className={styles.foodChanges}>
-          <ul className={styles.foodChangesList}>
-            {foodChanges.map((change) => (
-              <li key={change.id} className={styles.foodChangeItem}>
-                <p className={styles.foodChange}>
-                  <span className={styles.foodType}>{change.foodType}</span>{" "}
-                  <span className={styles.change}>{change.change}</span>
-                  <span className={styles.arrow}>➔</span>
-                  <span className={styles.timestamp}>{change.timestamp}</span>
-                </p>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-
-      {/* Sensor Data Section */}
-      <div className={styles.sectionContainer}>
-        <h3>
-          <Icon path={mdiThermometer} size={1} />
-          Sensor Data
-        </h3>
-        <p>{`Temperature: ${
-          sensorData.temp ? sensorData.temp + " °C" : "N/A"
-        }`}</p>
-        <p>{`Humidity: ${
-          sensorData.humidity ? sensorData.humidity : "N/A"
-        }`}</p>
-
-        {/* Container 1 */}
-        {sensorData.containers && sensorData.containers[0] && (
-          <div className={styles.sensorData}>
-            <h4>Gas Levels Container 1</h4>
-            <p>{`Gas Levels (O2): ${
-              sensorData.containers[0].o2
-                ? sensorData.containers[0].o2 + " ppm"
-                : "N/A"
-            }`}</p>
-            <p>{`Gas Levels (CO2): ${
-              sensorData.containers[0].co2
-                ? sensorData.containers[0].co2 + " ppm"
-                : "N/A"
-            }`}</p>
-          </div>
-        )}
-
-        {/* Container 2 */}
-        {sensorData.containers && sensorData.containers[1] && (
-          <div className={styles.sensorData}>
-            <h4>Gas Levels Container 2</h4>
-            <p>{`Gas Levels (O2): ${
-              sensorData.containers[1].o2
-                ? sensorData.containers[1].o2 + " ppm"
-                : "N/A"
-            }`}</p>
-            <p>{`Gas Levels (CO2): ${
-              sensorData.containers[1].co2
-                ? sensorData.containers[1].co2 + " ppm"
-                : "N/A"
-            }`}</p>
-          </div>
-        )}
       </div>
     </div>
   );
