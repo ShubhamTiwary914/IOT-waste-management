@@ -1,19 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "../styles/blocks.module.css";
 import conImg from "../assets/food_container.png";
+import Requests from "../connect/requests";
 
 function FoodSelection() {
   const [selectedContainer, setSelectedContainer] = useState(null);
   const [selectedFoodIndex, setSelectedFoodIndex] = useState(null);
   const [isFoodItemModalOpen, setFoodItemModalOpen] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
-  const [numberOfContainers, setNumberOfContainers] = useState(1);
+  const [numberOfContainers, setNumberOfContainers] = useState(2);
+  const [selectedItems, setSelectedItems] = useState([]);
 
   const foodItems = [
     { id: 1, name: "Apple" },
-    { id: 2, name: "Guava" },
+    { id: 2, name: "Banana" },
     { id: 3, name: "Potato" },
-    { id: 4, name: "Cabbage" },
+    { id: 4, name: "Guava" },
   ];
 
   const [containerData, setContainerData] = useState([
@@ -23,19 +25,44 @@ function FoodSelection() {
       containerNumber: 1,
       containerText: "Container 1",
     },
-    // {
-    //   id: 2,
-    //   imageSrc: conImg,
-    //   containerNumber: 2,
-    //   containerText: "Container 2",
-    // },
-    // {
-    //   id: 3,
-    //   imageSrc: conImg,
-    //   containerNumber: 3,
-    //   containerText: "Container 3",
-    // },
+    {
+      id: 2,
+      imageSrc: conImg,
+      containerNumber: 2,
+      containerText: "Container 2",
+    },
   ]);
+
+  useEffect(() => {
+    Requests.getItems((res) => {
+      setSelectedItems(res);
+
+      for(let i=0; i<containerData.length; i++){
+        containerData[i].containerText = `Container - ${i+1} contains ${res[i]}`;
+      } 
+    });
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("selectedContainers", JSON.stringify(containerData));
+    localStorage.setItem("selectedItems", JSON.stringify(selectedItems));
+  }, [containerData, selectedItems]);
+
+  const handleItemSelect = (newItem, index) => {
+    let newSelected = selectedItems;
+    newSelected[index] = newItem;
+    setSelectedItems(newSelected);
+
+    // Update the database with the new list of selected items
+    Requests.setItems(
+      {
+        itemNames: selectedItems,
+      },
+      (res) => {
+        console.log(res);
+      }
+    );
+  };
 
   const handleNumberOfContainersChange = (e) => {
     const number = parseInt(e.target.value);
@@ -88,6 +115,20 @@ function FoodSelection() {
       // Show an alert
       setFoodItemModalOpen(false);
       setShowAlert(true);
+
+      // Update the database with the new list of selected items
+      handleItemSelect(
+        foodItems[selectedFoodIndex].name,
+        selectedContainer - 1
+      );
+
+      // Retrieve the updated container data from the database
+      Requests.getItems((res) => {
+        console.log(res);
+        // Update the container data state with the retrieved data
+        //setContainerData(res.containerData);
+        // setSelectedItems(res.selectedItems);
+      });
     } else {
       console.log("No container or food item selected");
       // Alert if no container or food item is selected
