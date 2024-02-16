@@ -6,7 +6,7 @@ import joblib
 import warnings
 
 warnings.filterwarnings("ignore")
-model = joblib.load('./model/new_model.pkl');
+
 
 app = FastAPI();
 origins = ["*"]
@@ -27,10 +27,12 @@ class ReqBody(BaseModel):
 
 
 
+
 def predictor(foodItem: str, temp: float):
+    model = joblib.load(f'./models/{foodItem}.pkl');
     testFd = pd.DataFrame([[foodItem, temp]], columns=["Food Item", "Temp.(in degree C)"])
     preds = model.predict(testFd)
-    return preds[0];
+    return preds[0][0]
 
 
 @app.post('/temp/')
