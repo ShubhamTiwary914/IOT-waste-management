@@ -15,6 +15,15 @@ function getCurrentTimeString(){
 }
 
 
+const parseGases = (reqBody) =>{
+    for(let i=0; i<reqBody["data"]["containers"].length; i++){
+        let co2 = reqBody["data"]["containers"][i]["co2"]; 
+        reqBody["data"]["containers"][i]["o2"] = co2*(3/8); 
+    }
+    return reqBody
+}
+
+
 
 async function updateRealTime(reqBody, responder){
     try{
@@ -115,5 +124,6 @@ async function updateHourlyData(device_id, data, currTime){
 
 
 module.exports = {
-    updateRealTime
+    updateRealTime,
+    parseGases
 }

@@ -5,6 +5,8 @@ const updatesHandler = require('./../../db/controllers/esp')
 
 
 
+
+
 senserRoute.post('/esp/link/', (req, res)=>{
     console.log(`Connection with Device @device:id: ${req.body.device_id} established!`);
     res.json({
@@ -18,6 +20,7 @@ senserRoute.post('/esp/link/', (req, res)=>{
 senserRoute.post('/esp/post/', (req, res)=>{
     try{
         console.log(`Data Received from esp32 for device-id: ${req.body["device_id"]}`);
+        req.body = updatesHandler.parseGases(req.body)
         updatesHandler.updateRealTime(req.body, res)
     }
     catch(err){
