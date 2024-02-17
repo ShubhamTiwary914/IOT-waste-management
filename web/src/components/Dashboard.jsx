@@ -112,10 +112,10 @@ function Dashboard() {
   };
 
   const [inventory, setInventory] = useState([
-    { id: 1, foodType: food_1},
-    { id: 2, foodType: food_2},
-    { id: 3, foodType: food_3},
-    { id: 3, foodType: food_3},
+    { id: 1, foodType: food_1, quantity: food_1_quantity },
+    { id: 2, foodType: food_2, quantity: food_2_quantity },
+    { id: 3, foodType: food_3, quantity: food_3_quantity },
+    { id: 3, foodType: food_4, quantity: food_4_quantity },
   ]);
 
   // Dummy data for timestamps when more food items were added
