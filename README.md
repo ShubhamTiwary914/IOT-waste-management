@@ -28,7 +28,7 @@
 
 <h3>  Files Structure 📂 </h3>
 
-> **_api_**: server side applications [Express + Node + mongoDB] <br>
+> **_api_**: server side applications [Express + Node + mongoDB + FastAPI] <br>
 > **_web_**: client side application [React +_AJAX] <br>
 > **_iot_**: hardware, IOTs & Sensors  [ESP32]
 
@@ -72,8 +72,7 @@
 >> 1. First, open the terminal and run the backend server:
 
 ```cmd
-  cd api
-  npm run server
+  ./server
 ```
 > It should give something like this: <br>
 ![image](https://github.com/ShubhamTiwary914/hackIOT-uit/assets/67773966/cfd45b86-e7d1-473b-a377-5c029e6f1d4d)
